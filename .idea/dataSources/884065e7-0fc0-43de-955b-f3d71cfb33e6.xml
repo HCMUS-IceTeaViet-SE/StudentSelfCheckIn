@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.1">
+    <root id="1"/>
+    <schema id="2" parent="1" name="information_schema">
+      <Current>1</Current>
+    </schema>
+    <schema id="3" parent="1" name="mysql"/>
+    <schema id="4" parent="1" name="performance_schema"/>
+    <schema id="5" parent="1" name="sakila"/>
+    <schema id="6" parent="1" name="selfcheckindatabase">
+      <Visible>1</Visible>
+    </schema>
+    <schema id="7" parent="1" name="sys"/>
+    <schema id="8" parent="1" name="world"/>
+    <table id="9" parent="6" name="account"/>
+    <table id="10" parent="6" name="attendance"/>
+    <table id="11" parent="6" name="classsubject"/>
+    <table id="12" parent="6" name="student"/>
+    <table id="13" parent="6" name="student_subject"/>
+    <table id="14" parent="6" name="teacher"/>
+    <table id="15" parent="6" name="timetable"/>
+    <column id="16" parent="9" name="UsrName">
+      <Position>1</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="17" parent="9" name="PassWrd">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="18" parent="9" name="IsTheFisrtTime">
+      <Position>3</Position>
+      <DataType>bit(1)|0</DataType>
+    </column>
+    <key id="19" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>UsrName</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="20" parent="10" name="StudentID">
+      <Position>1</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="10" name="SubjectID">
+      <Position>2</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="22" parent="10" name="CheckInDate">
+      <Position>3</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="10" name="IsCheckedIn">
+      <Position>4</Position>
+      <DataType>bit(1)|0</DataType>
+    </column>
+    <index id="24" parent="10" name="SubjectID">
+      <ColNames>SubjectID</ColNames>
+    </index>
+    <key id="25" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>StudentID
+SubjectID
+CheckInDate</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="26" parent="10" name="attendance_ibfk_1">
+      <ColNames>StudentID</ColNames>
+      <RefSchemaName>selfcheckindatabase</RefSchemaName>
+      <RefTableName>student</RefTableName>
+      <RefColNames>StudentID</RefColNames>
+    </foreign-key>
+    <foreign-key id="27" parent="10" name="attendance_ibfk_2">
+      <ColNames>SubjectID</ColNames>
+      <RefSchemaName>selfcheckindatabase</RefSchemaName>
+      <RefTableName>classsubject</RefTableName>
+      <RefColNames>SubjectID</RefColNames>
+    </foreign-key>
+    <column id="28" parent="11" name="SubjectID">
+      <Position>1</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="29" parent="11" name="SubjectName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <key id="30" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SubjectID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="31" parent="12" name="StudentID">
+      <Position>1</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="12" name="StudentName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="33" parent="12" name="UsrName">
+      <Position>3</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="34" parent="12" name="ClassName">
+      <Position>4</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="35" parent="12" name="Sex">
+      <Position>5</Position>
+      <DataType>varchar(10)|0</DataType>
+    </column>
+    <column id="36" parent="12" name="DOB">
+      <Position>6</Position>
+      <DataType>date|0</DataType>
+    </column>
+    <column id="37" parent="12" name="Address">
+      <Position>7</Position>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <key id="38" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>StudentID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="39" parent="13" name="StudentID">
+      <Position>1</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="13" name="SubjectID">
+      <Position>2</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="41" parent="13" name="SubjectID">
+      <ColNames>SubjectID</ColNames>
+    </index>
+    <key id="42" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>StudentID
+SubjectID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="43" parent="13" name="student_subject_ibfk_1">
+      <ColNames>StudentID</ColNames>
+      <RefSchemaName>selfcheckindatabase</RefSchemaName>
+      <RefTableName>student</RefTableName>
+      <RefColNames>StudentID</RefColNames>
+    </foreign-key>
+    <foreign-key id="44" parent="13" name="student_subject_ibfk_2">
+      <ColNames>SubjectID</ColNames>
+      <RefSchemaName>selfcheckindatabase</RefSchemaName>
+      <RefTableName>classsubject</RefTableName>
+      <RefColNames>SubjectID</RefColNames>
+    </foreign-key>
+    <column id="45" parent="14" name="TeacherID">
+      <Position>1</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="14" name="TeacherName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="47" parent="14" name="UsrName">
+      <Position>3</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <key id="48" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>TeacherID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="49" parent="15" name="TimeTableID">
+      <Position>1</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="15" name="StartDate">
+      <Position>3</Position>
+      <DataType>date|0</DataType>
+    </column>
+    <column id="51" parent="15" name="EndDate">
+      <Position>4</Position>
+      <DataType>date|0</DataType>
+    </column>
+    <column id="52" parent="15" name="WeekCount">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="53" parent="15" name="WeekDay">
+      <Position>6</Position>
+      <DataType>varchar(10)|0</DataType>
+    </column>
+    <column id="54" parent="15" name="StartTime">
+      <Position>7</Position>
+      <DataType>time|0</DataType>
+    </column>
+    <column id="55" parent="15" name="EndTime">
+      <Position>8</Position>
+      <DataType>time|0</DataType>
+    </column>
+    <column id="56" parent="15" name="ClassRoom">
+      <Position>9</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="57" parent="15" name="SubjectID">
+      <Position>2</Position>
+      <DataType>varchar(10)|0</DataType>
+    </column>
+    <index id="58" parent="15" name="SubjectID">
+      <ColNames>SubjectID</ColNames>
+    </index>
+    <key id="59" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>TimeTableID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="60" parent="15" name="timetable_ibfk_1">
+      <ColNames>SubjectID</ColNames>
+      <RefSchemaName>selfcheckindatabase</RefSchemaName>
+      <RefTableName>classsubject</RefTableName>
+      <RefColNames>SubjectID</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>

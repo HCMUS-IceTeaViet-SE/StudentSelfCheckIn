@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 11, 2017 10:02:27 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="main.java.model.Timetable" table="timetable" catalog="selfcheckindatabase" optimistic-lock="version">
+        <id name="timeTableId" type="string">
+            <column name="TimeTableID" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="classsubject" class="main.java.model.ClassSubject" fetch="select">
+            <column name="SubjectID" length="10" />
+        </many-to-one>
+        <property name="startDate" type="date">
+            <column name="StartDate" length="10" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="EndDate" length="10" />
+        </property>
+        <property name="weekCount" type="java.lang.Integer">
+            <column name="WeekCount" />
+        </property>
+        <property name="weekDay" type="string">
+            <column name="WeekDay" length="10" />
+        </property>
+        <property name="startTime" type="time">
+            <column name="StartTime" length="8" />
+        </property>
+        <property name="endTime" type="time">
+            <column name="EndTime" length="8" />
+        </property>
+        <property name="classRoom" type="string">
+            <column name="ClassRoom" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

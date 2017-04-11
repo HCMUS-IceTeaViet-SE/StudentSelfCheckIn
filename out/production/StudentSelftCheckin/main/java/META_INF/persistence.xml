@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <persistence-unit name="PersistenceObject">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>java:/DefaultDS</jta-data-source>
+        <mapping-file>ormap.xml</mapping-file>
+        <mapping-file>model/Account.xml</mapping-file>
+        <mapping-file>model/Attendance.xml</mapping-file>
+        <mapping-file>model/ClassSubject.xml</mapping-file>
+        <mapping-file>model/Student.xml</mapping-file>
+        <mapping-file>model/StudentSubject.xml</mapping-file>
+        <mapping-file>model/Teacher.xml</mapping-file>
+        <mapping-file>model/Timetable.xml</mapping-file>
+        <jar-file>MyApp.jar</jar-file>
+        <class>org.acme.Employee</class>
+        <class>org.acme.Person</class>
+        <class>org.acme.Address</class>
+        <class>main.java.model.Account</class>
+        <class>main.java.model.Attendance</class>
+        <class>main.java.model.ClassSubject</class>
+        <class>main.java.model.Student</class>
+        <class>main.java.model.StudentSubject</class>
+        <class>main.java.model.Teacher</class>
+        <class>main.java.model.Timetable</class>
+        <properties>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver">com.mysql.jdbc.Driver</property>
+            <property name="hibernate.connection.password">XXXXXX</property>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306">jdbc:mysql://<hostname>/<database></property>
+            <property name="hibernate.connection.username">XXXXX</property>
+            <property name="hibernate.default_schema">XXXXXX</property>
+            <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        </properties>
+    </persistence-unit>
+</persistence>
