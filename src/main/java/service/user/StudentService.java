@@ -1,6 +1,7 @@
 package main.java.service.user;
 
 import main.java.model.Student;
+import main.java.service.BaseService;
 import main.java.service.IBaseService;
 import main.java.utils.HibernateUtils;
 import org.hibernate.HibernateException;
@@ -12,10 +13,25 @@ import java.util.List;
 /**
  * Created by Genius Doan on 4/11/2017.
  */
-public class StudentService implements IBaseService<Student,Long> {
+public class StudentService extends BaseService implements IBaseService<Student,String> {
     @Override
-    public Student findOne(Long aLong) {
-        return null;
+    public Student findOne(String id) {
+        Student s = null;
+        Session session = HibernateUtils.getSession();
+        try {
+            s.getAddress();
+            String hql = "select std from Student std where std.id = \'" + id + "\'";
+            Query query = session.createQuery(hql);
+            s = (Student) query.getSingleResult();
+        } catch (HibernateException ex)
+        {
+            System.err.println(ex);
+        }
+        finally {
+            session.close();
+        }
+
+        return s;
     }
 
     @Override
@@ -28,25 +44,36 @@ public class StudentService implements IBaseService<Student,Long> {
             ds = query.list();
         } catch (HibernateException ex) {
 //Log the exception
-            System.err.println(ex);
+            System.err.println(ex.toString());
         } finally {
             session.close();
         }
+
         return ds;
     }
 
     @Override
-    public List<Student> findAll(List<Long> listId) {
+    public List<Student> findAll(List<String> listId) {
         return null;
     }
 
     @Override
     public long count() {
-        return 0;
+        Long count = 0L;
+        Session session = HibernateUtils.getSession();
+        try {
+            String hql = "select count(*) from Student";
+            Query query = session.createQuery(hql);
+            count = (Long) query.getSingleResult();
+        } catch (HibernateException ex)
+        {
+            System.err.println(ex.toString());
+        }
+        return count;
     }
 
     @Override
-    public boolean exists(Long aLong) {
+    public boolean exists(String id) {
         return false;
     }
 
@@ -61,9 +88,10 @@ public class StudentService implements IBaseService<Student,Long> {
     }
 
     @Override
-    public void delete(Long aLong) {
+    public void delete(String id) {
 
     }
+
 
     @Override
     public void delete(Student entity) {

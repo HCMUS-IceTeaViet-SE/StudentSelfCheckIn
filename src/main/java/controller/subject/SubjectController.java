@@ -6,4 +6,12 @@ import main.java.controller.BaseController;
  * Created by Genius Doan on 4/11/2017.
  */
 public class SubjectController extends BaseController {
+    public static String[] getColumnNames()
+    {
+        String[] res = {"Mã môn học",
+                "Tên môn học",
+                "Sĩ số",
+                "Danh sách"};
+        return res;
+    }
 }

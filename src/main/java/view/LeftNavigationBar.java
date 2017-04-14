@@ -13,12 +13,16 @@ public class LeftNavigationBar extends JPanel {
     public static final int R_ID_BTN_MODIFY_SUBJECT = 1;
     public static final int R_ID_BTN_SHOW_CHECKIN_LIST = 2;
 
+    //UI View variables
     private JButton btnListSubject;
     private JButton btnModifySubject;
     private JButton btnShowCheckInList;
 
+    //Local variables
     private OnClickListener mListener;
-    int width;
+    private int width;
+    private Color selectedColor, normalColor;
+
 
     public LeftNavigationBar(int x, int y, int width, int height)
     {
@@ -26,6 +30,9 @@ public class LeftNavigationBar extends JPanel {
         this.width = width;
         setBounds(x, y, width, height);
         setLayout(null);
+
+        selectedColor = Color.decode("#F57C00");
+        normalColor = Color.decode("#616161");
 
         initContentLayout();
     }
@@ -47,6 +54,7 @@ public class LeftNavigationBar extends JPanel {
         add(btnShowCheckInList);
 
         clearColor();
+        btnListSubject.setBackground(selectedColor);
 
 
         //Event
@@ -54,7 +62,7 @@ public class LeftNavigationBar extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clearColor();
-                btnListSubject.setBackground(Color.ORANGE);
+                btnListSubject.setBackground(selectedColor);
                 mListener.onClick(R_ID_BTN_LIST_SUBJECT);
             }
         });
@@ -63,7 +71,7 @@ public class LeftNavigationBar extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clearColor();
-                btnShowCheckInList.setBackground(Color.ORANGE);
+                btnShowCheckInList.setBackground(selectedColor);
                 mListener.onClick(R_ID_BTN_SHOW_CHECKIN_LIST);
             }
         });
@@ -73,7 +81,7 @@ public class LeftNavigationBar extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clearColor();
-                btnModifySubject.setBackground(Color.ORANGE);
+                btnModifySubject.setBackground(selectedColor);
                 mListener.onClick(R_ID_BTN_MODIFY_SUBJECT);
             }
         });
@@ -87,10 +95,35 @@ public class LeftNavigationBar extends JPanel {
             System.err.println("Can not set listener for a null object!");
     }
 
+    public void setNavigationBarItem(int id)
+    {
+        clearColor();
+        switch (id) {
+            case LeftNavigationBar.R_ID_BTN_LIST_SUBJECT:
+                btnListSubject.setBackground(selectedColor);
+                break;
+
+            case LeftNavigationBar.R_ID_BTN_MODIFY_SUBJECT:
+                btnModifySubject.setBackground(selectedColor);
+                break;
+
+            case LeftNavigationBar.R_ID_BTN_SHOW_CHECKIN_LIST:
+                btnShowCheckInList.setBackground(selectedColor);
+                break;
+
+            default:
+                break;
+        }
+
+        mListener.onClick(id);
+    }
+
+
+    //
     private void clearColor()
     {
-        btnListSubject.setBackground(Color.DARK_GRAY);
-        btnModifySubject.setBackground(Color.DARK_GRAY);
-        btnShowCheckInList.setBackground(Color.DARK_GRAY);
+        btnListSubject.setBackground(normalColor);
+        btnModifySubject.setBackground(normalColor);
+        btnShowCheckInList.setBackground(normalColor);
     }
 }

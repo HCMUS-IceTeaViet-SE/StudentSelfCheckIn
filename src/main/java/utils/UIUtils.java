@@ -2,6 +2,7 @@ package main.java.utils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -18,5 +19,14 @@ public class UIUtils {
             System.out.println(ex);
         }
         return null;
+    }
+
+    public static void setEmptyBorder(JButton button)
+    {
+        if (button != null)
+        {
+            Border emptyBorder = BorderFactory.createEmptyBorder(0, 0, 0, 0);
+            button.setBorder(emptyBorder);
+        }
     }
 }

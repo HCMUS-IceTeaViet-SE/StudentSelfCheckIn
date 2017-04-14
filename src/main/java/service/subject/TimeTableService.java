@@ -1,28 +1,27 @@
-package main.java.service.user;
+package main.java.service.subject;
 
-import main.java.model.Teacher;
+import main.java.model.Timetable;
 import main.java.service.BaseService;
 import main.java.service.IBaseService;
 
 import java.util.List;
 
 /**
- * Created by Genius Doan on 4/11/2017.
+ * Created by Genius Doan on 4/12/2017.
  */
-public class TeacherService extends BaseService implements IBaseService<Teacher, String> {
-
+public class TimeTableService extends BaseService implements IBaseService<Timetable, String> {
     @Override
-    public Teacher findOne(String id) {
+    public Timetable findOne(String id) {
         return null;
     }
 
     @Override
-    public List<Teacher> findAll() {
+    public List<Timetable> findAll() {
         return null;
     }
 
     @Override
-    public List<Teacher> findAll(List<String> listId) {
+    public List<Timetable> findAll(List<String> listId) {
         return null;
     }
 
@@ -37,12 +36,12 @@ public class TeacherService extends BaseService implements IBaseService<Teacher,
     }
 
     @Override
-    public Teacher save(Teacher entity) {
+    public Timetable save(Timetable entity) {
         return null;
     }
 
     @Override
-    public List<Teacher> save(List<Teacher> listEntity) {
+    public List<Timetable> save(List<Timetable> listEntity) {
         return null;
     }
 
@@ -52,12 +51,12 @@ public class TeacherService extends BaseService implements IBaseService<Teacher,
     }
 
     @Override
-    public void delete(Teacher entity) {
+    public void delete(Timetable entity) {
 
     }
 
     @Override
-    public void delete(List<Teacher> listEntity) {
+    public void delete(List<Timetable> listEntity) {
 
     }
 

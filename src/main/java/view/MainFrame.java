@@ -8,16 +8,12 @@ import java.awt.*;
 /**
  * Created by Genius Doan on 4/11/2017.
  */
-public class MainFrame extends JFrame{
-
-    private int defaultWidth = 800;
-    private int defaultHeight = 540;
+public class MainFrame extends BaseFrame {
     public static final int MARGIN_TOP = 80;
     public static final int MARGIN = 16;
     public static final int LINE_HEIGHT = 32;
 
-    //Views
-    private Toolbar toolbar;
+    //UI View variables
     private LeftNavigationBar leftNavigationBar;
     private SubjectListPanel subjectListPanel;
     private SubjectModifyPanel subjectModifyPanel;
@@ -35,28 +31,20 @@ public class MainFrame extends JFrame{
     public MainFrame(String title)
     {
         super(title);
-        // invoke the JFrame constructor
-        setSize( defaultWidth, defaultHeight );
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //setLayout( new FlowLayout() );       // set the layout manager
-        setLayout(null);
-
-
-        //Init layout
-        initLayout();
+        toolbar.setLoginInformationEnabled(true);
     }
 
-    private void initLayout() {
-        //Toolbar
-        toolbar = new Toolbar(defaultWidth, 80);
-        add(toolbar);
+    @Override
+    public void initLayoutView() {
+        super.initLayoutView();
 
         //Left navigation bar
         leftNavigationBar = new LeftNavigationBar(0, toolbar.getHeight(), 240, defaultHeight - toolbar.getHeight());
         add(leftNavigationBar);
 
         //Main content
-        subjectListPanel = new SubjectListPanel(240,toolbar.getHeight(), defaultWidth - 240, defaultHeight - toolbar.getHeight());
+        subjectListPanel = new SubjectListPanel(240,toolbar.getHeight(), defaultWidth - 200, defaultHeight - toolbar.getHeight());
         add(subjectListPanel);
 
         subjectModifyPanel = new SubjectModifyPanel(240, toolbar.getHeight(), defaultWidth - 240, defaultHeight - toolbar.getHeight());
@@ -72,7 +60,14 @@ public class MainFrame extends JFrame{
         subjectListPanel.setOnButtonClickListener(new OnClickListener() {
             @Override
             public void onClick(int id) {
-                System.out.println(id);
+                setLeftNavigationBar(id);
+            }
+        });
+
+        toolbar.setOnSignButtonClickListener(new OnClickListener() {
+            @Override
+            public void onClick(int id) {
+
             }
         });
     }
@@ -89,6 +84,7 @@ public class MainFrame extends JFrame{
                     remove(subjectModifyPanel);
                     remove(checkInListPanel);
                     add(subjectListPanel);
+                    currMainPanelId = LeftNavigationBar.R_ID_BTN_LIST_SUBJECT;
                 }
                 break;
 
@@ -101,6 +97,7 @@ public class MainFrame extends JFrame{
                     remove(subjectListPanel);
                     remove(checkInListPanel);
                     add(subjectModifyPanel);
+                    currMainPanelId = LeftNavigationBar.R_ID_BTN_MODIFY_SUBJECT;
                 }
 
                 break;
@@ -114,6 +111,7 @@ public class MainFrame extends JFrame{
                     remove(subjectModifyPanel);
                     remove(subjectListPanel);
                     add(checkInListPanel);
+                    currMainPanelId = LeftNavigationBar.R_ID_BTN_SHOW_CHECKIN_LIST;
                 }
                 break;
 
@@ -123,5 +121,11 @@ public class MainFrame extends JFrame{
 
         revalidate();
         repaint();
+    }
+
+    private void setLeftNavigationBar(int id)
+    {
+        leftNavigationBar.setNavigationBarItem(id);
+        currMainPanelId = id;
     }
 }
