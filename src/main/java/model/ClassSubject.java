@@ -68,8 +68,10 @@ public class ClassSubject  implements java.io.Serializable {
         this.attendances = attendances;
     }
 
-
-
+    public void addStudent(Student student)
+    {
+        students.add(student);
+    }
 
 }
 
