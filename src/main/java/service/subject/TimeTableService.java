@@ -36,13 +36,23 @@ public class TimeTableService extends BaseService implements IBaseService<Timeta
     }
 
     @Override
-    public Timetable save(Timetable entity) {
-        return null;
+    public boolean update(Timetable entity) {
+        return false;
     }
 
     @Override
-    public List<Timetable> save(List<Timetable> listEntity) {
-        return null;
+    public boolean update(List<Timetable> listEntity) {
+        return false;
+    }
+
+    @Override
+    public boolean save(Timetable entity) {
+        return false;
+    }
+
+    @Override
+    public boolean save(List<Timetable> listEntity) {
+        return false;
     }
 
     @Override

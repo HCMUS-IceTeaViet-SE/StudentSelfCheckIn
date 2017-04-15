@@ -37,13 +37,23 @@ public class AttendanceService extends BaseService implements IBaseService<Atten
     }
 
     @Override
-    public Attendance save(Attendance entity) {
-        return null;
+    public boolean update(Attendance entity) {
+        return false;
     }
 
     @Override
-    public List<Attendance> save(List<Attendance> listEntity) {
-        return null;
+    public boolean update(List<Attendance> listEntity) {
+        return false;
+    }
+
+    @Override
+    public boolean save(Attendance entity) {
+        return false;
+    }
+
+    @Override
+    public boolean save(List<Attendance> listEntity) {
+        return false;
     }
 
     @Override

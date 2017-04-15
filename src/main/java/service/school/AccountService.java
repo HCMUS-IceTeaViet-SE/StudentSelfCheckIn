@@ -36,13 +36,23 @@ public class AccountService extends BaseService implements IBaseService<Account,
     }
 
     @Override
-    public Account save(Account entity) {
-        return null;
+    public boolean update(Account entity) {
+        return false;
     }
 
     @Override
-    public List<Account> save(List<Account> listEntity) {
-        return null;
+    public boolean update(List<Account> listEntity) {
+        return false;
+    }
+
+    @Override
+    public boolean save(Account entity) {
+        return false;
+    }
+
+    @Override
+    public boolean save(List<Account> listEntity) {
+        return false;
     }
 
     @Override

@@ -36,13 +36,23 @@ public class ClassSubjectService extends BaseService implements IBaseService<Cla
     }
 
     @Override
-    public ClassSubject save(ClassSubject entity) {
-        return null;
+    public boolean update(ClassSubject entity) {
+        return false;
     }
 
     @Override
-    public List<ClassSubject> save(List<ClassSubject> listEntity) {
-        return null;
+    public boolean update(List<ClassSubject> listEntity) {
+        return false;
+    }
+
+    @Override
+    public boolean save(ClassSubject entity) {
+        return false;
+    }
+
+    @Override
+    public boolean save(List<ClassSubject> listEntity) {
+        return false;
     }
 
     @Override

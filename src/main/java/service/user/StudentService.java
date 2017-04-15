@@ -6,8 +6,10 @@ import main.java.service.IBaseService;
 import main.java.utils.HibernateUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,10 +18,10 @@ import java.util.List;
 public class StudentService extends BaseService implements IBaseService<Student,String> {
     @Override
     public Student findOne(String id) {
+        //TODO: NoResourceException
         Student s = null;
         Session session = HibernateUtils.getSession();
         try {
-            s.getAddress();
             String hql = "select std from Student std where std.id = \'" + id + "\'";
             Query query = session.createQuery(hql);
             s = (Student) query.getSingleResult();
@@ -54,7 +56,16 @@ public class StudentService extends BaseService implements IBaseService<Student,
 
     @Override
     public List<Student> findAll(List<String> listId) {
-        return null;
+        List<Student> res = new ArrayList<>();
+
+        for (int i = 0; i < listId.size(); i++)
+        {
+            Student s = findOne(listId.get(i));
+            if (s != null)
+                res.add(s);
+        }
+
+        return res;
     }
 
     @Override
@@ -64,7 +75,7 @@ public class StudentService extends BaseService implements IBaseService<Student,
         try {
             String hql = "select count(*) from Student";
             Query query = session.createQuery(hql);
-            count = (Long) query.getSingleResult();
+            count = (Long) query.uniqueResult();
         } catch (HibernateException ex)
         {
             System.err.println(ex.toString());
@@ -74,37 +85,99 @@ public class StudentService extends BaseService implements IBaseService<Student,
 
     @Override
     public boolean exists(String id) {
+        //If found a student -> exist
+        return findOne(id) != null;
+    }
+
+    @Override
+    public boolean update(Student entity) {
         return false;
     }
 
     @Override
-    public Student save(Student entity) {
-        return null;
+    public boolean update(List<Student> listEntity) {
+        return false;
+    }
+
+
+    @Override
+    public boolean save(Student student) {
+        Session session = HibernateUtils.getSession();
+        if (exists(student.getStudentId())) {
+            //Already in table
+            return false;
+        }
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(student);
+            transaction.commit();
+        } catch (HibernateException ex) {
+            //Log the exception
+            transaction.rollback();
+            System.err.println(ex);
+            return false;
+        } finally {
+            session.close();
+        }
+        return true;
     }
 
     @Override
-    public List<Student> save(List<Student> listEntity) {
-        return null;
+    public boolean save(List<Student> studentList) {
+       for (int i = 0; i < studentList.size(); i++)
+       {
+           try {
+               if (studentList.get(i) != null)
+                   save(studentList.get(i));
+           }
+           catch (Exception ex)
+           {
+               System.err.println(ex);
+               return false;
+           }
+       }
+
+       return true;
     }
 
     @Override
     public void delete(String id) {
-
+        Session session = HibernateUtils.getSession();
+        try {
+            String hql = "delete from Student std where std = \'" + id + "\'";
+            Query query = session.createQuery(hql);
+            query.executeUpdate();
+        } catch (HibernateException ex)
+        {
+            System.err.println(ex.toString());
+        }
     }
 
 
     @Override
     public void delete(Student entity) {
-
+        delete(entity.getStudentId());
     }
 
     @Override
     public void delete(List<Student> listEntity) {
-
+        for (int i = 0; i < listEntity.size(); i++)
+        {
+            delete(listEntity.get(i).getStudentId());
+        }
     }
 
     @Override
     public void deleteAll() {
-
+        Session session = HibernateUtils.getSession();
+        try {
+            String hql = "delete from Student";
+            Query query = session.createQuery(hql);
+            query.executeUpdate();
+        } catch (HibernateException ex)
+        {
+            System.err.println(ex.toString());
+        }
     }
 }
