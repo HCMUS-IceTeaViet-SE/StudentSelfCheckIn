@@ -4,18 +4,18 @@ import main.java.model.Student;
 import main.java.service.BaseService;
 import main.java.service.IBaseService;
 import main.java.utils.HibernateUtils;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import javax.persistence.PersistenceException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Genius Doan on 4/11/2017.
  */
-public class StudentService extends BaseService implements IBaseService<Student,String> {
+public class StudentService extends BaseService implements IBaseService<Student, String> {
     @Override
     public Student findOne(String id) {
         //TODO: NoResourceException
@@ -25,11 +25,9 @@ public class StudentService extends BaseService implements IBaseService<Student,
             String hql = "select std from Student std where std.id = \'" + id + "\'";
             Query query = session.createQuery(hql);
             s = (Student) query.getSingleResult();
-        } catch (HibernateException ex)
-        {
+        } catch (PersistenceException ex) {
             System.err.println(ex);
-        }
-        finally {
+        } finally {
             session.close();
         }
 
@@ -44,8 +42,8 @@ public class StudentService extends BaseService implements IBaseService<Student,
             String hql = "select std from Student std";
             Query query = session.createQuery(hql);
             ds = query.list();
-        } catch (HibernateException ex) {
-//Log the exception
+        } catch (PersistenceException ex) {
+            //Log the exception
             System.err.println(ex.toString());
         } finally {
             session.close();
@@ -58,8 +56,7 @@ public class StudentService extends BaseService implements IBaseService<Student,
     public List<Student> findAll(List<String> listId) {
         List<Student> res = new ArrayList<>();
 
-        for (int i = 0; i < listId.size(); i++)
-        {
+        for (int i = 0; i < listId.size(); i++) {
             Student s = findOne(listId.get(i));
             if (s != null)
                 res.add(s);
@@ -76,8 +73,7 @@ public class StudentService extends BaseService implements IBaseService<Student,
             String hql = "select count(*) from Student";
             Query query = session.createQuery(hql);
             count = (Long) query.uniqueResult();
-        } catch (HibernateException ex)
-        {
+        } catch (PersistenceException ex) {
             System.err.println(ex.toString());
         }
         return count;
@@ -112,7 +108,7 @@ public class StudentService extends BaseService implements IBaseService<Student,
             transaction = session.beginTransaction();
             session.save(student);
             transaction.commit();
-        } catch (HibernateException ex) {
+        } catch (PersistenceException ex) {
             //Log the exception
             transaction.rollback();
             System.err.println(ex);
@@ -125,20 +121,17 @@ public class StudentService extends BaseService implements IBaseService<Student,
 
     @Override
     public boolean save(List<Student> studentList) {
-       for (int i = 0; i < studentList.size(); i++)
-       {
-           try {
-               if (studentList.get(i) != null)
-                   save(studentList.get(i));
-           }
-           catch (Exception ex)
-           {
-               System.err.println(ex);
-               return false;
-           }
-       }
+        for (int i = 0; i < studentList.size(); i++) {
+            try {
+                if (studentList.get(i) != null)
+                    save(studentList.get(i));
+            } catch (Exception ex) {
+                System.err.println(ex);
+                return false;
+            }
+        }
 
-       return true;
+        return true;
     }
 
     @Override
@@ -148,8 +141,7 @@ public class StudentService extends BaseService implements IBaseService<Student,
             String hql = "delete from Student std where std = \'" + id + "\'";
             Query query = session.createQuery(hql);
             query.executeUpdate();
-        } catch (HibernateException ex)
-        {
+        } catch (PersistenceException ex) {
             System.err.println(ex.toString());
         }
     }
@@ -162,8 +154,7 @@ public class StudentService extends BaseService implements IBaseService<Student,
 
     @Override
     public void delete(List<Student> listEntity) {
-        for (int i = 0; i < listEntity.size(); i++)
-        {
+        for (int i = 0; i < listEntity.size(); i++) {
             delete(listEntity.get(i).getStudentId());
         }
     }
@@ -175,8 +166,7 @@ public class StudentService extends BaseService implements IBaseService<Student,
             String hql = "delete from Student";
             Query query = session.createQuery(hql);
             query.executeUpdate();
-        } catch (HibernateException ex)
-        {
+        } catch (PersistenceException ex) {
             System.err.println(ex.toString());
         }
     }

@@ -137,91 +137,95 @@ CheckInDate</ColNames>
       <DataType>varchar(10)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="41" parent="13" name="SubjectID">
+    <column id="41" parent="13" name="Note">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <index id="42" parent="13" name="SubjectID">
       <ColNames>SubjectID</ColNames>
     </index>
-    <key id="42" parent="13" name="PRIMARY">
+    <key id="43" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>StudentID
 SubjectID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="43" parent="13" name="student_subject_ibfk_1">
+    <foreign-key id="44" parent="13" name="student_subject_ibfk_1">
       <ColNames>StudentID</ColNames>
       <RefSchemaName>selfcheckindatabase</RefSchemaName>
       <RefTableName>student</RefTableName>
       <RefColNames>StudentID</RefColNames>
     </foreign-key>
-    <foreign-key id="44" parent="13" name="student_subject_ibfk_2">
+    <foreign-key id="45" parent="13" name="student_subject_ibfk_2">
       <ColNames>SubjectID</ColNames>
       <RefSchemaName>selfcheckindatabase</RefSchemaName>
       <RefTableName>classsubject</RefTableName>
       <RefColNames>SubjectID</RefColNames>
     </foreign-key>
-    <column id="45" parent="14" name="TeacherID">
+    <column id="46" parent="14" name="TeacherID">
       <Position>1</Position>
       <DataType>varchar(10)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="46" parent="14" name="TeacherName">
+    <column id="47" parent="14" name="TeacherName">
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="47" parent="14" name="UsrName">
+    <column id="48" parent="14" name="UsrName">
       <Position>3</Position>
       <DataType>varchar(30)|0</DataType>
     </column>
-    <key id="48" parent="14" name="PRIMARY">
+    <key id="49" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>TeacherID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="49" parent="15" name="TimeTableID">
+    <column id="50" parent="15" name="TimeTableID">
       <Position>1</Position>
       <DataType>varchar(10)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="50" parent="15" name="StartDate">
+    <column id="51" parent="15" name="StartDate">
       <Position>3</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="51" parent="15" name="EndDate">
+    <column id="52" parent="15" name="EndDate">
       <Position>4</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="52" parent="15" name="WeekCount">
+    <column id="53" parent="15" name="WeekCount">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="53" parent="15" name="WeekDay">
+    <column id="54" parent="15" name="WeekDay">
       <Position>6</Position>
       <DataType>varchar(10)|0</DataType>
     </column>
-    <column id="54" parent="15" name="StartTime">
+    <column id="55" parent="15" name="StartTime">
       <Position>7</Position>
       <DataType>time|0</DataType>
     </column>
-    <column id="55" parent="15" name="EndTime">
+    <column id="56" parent="15" name="EndTime">
       <Position>8</Position>
       <DataType>time|0</DataType>
     </column>
-    <column id="56" parent="15" name="ClassRoom">
+    <column id="57" parent="15" name="ClassRoom">
       <Position>9</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="57" parent="15" name="SubjectID">
+    <column id="58" parent="15" name="SubjectID">
       <Position>2</Position>
       <DataType>varchar(10)|0</DataType>
     </column>
-    <index id="58" parent="15" name="SubjectID">
+    <index id="59" parent="15" name="SubjectID">
       <ColNames>SubjectID</ColNames>
     </index>
-    <key id="59" parent="15" name="PRIMARY">
+    <key id="60" parent="15" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>TimeTableID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="60" parent="15" name="timetable_ibfk_1">
+    <foreign-key id="61" parent="15" name="timetable_ibfk_1">
       <ColNames>SubjectID</ColNames>
       <RefSchemaName>selfcheckindatabase</RefSchemaName>
       <RefTableName>classsubject</RefTableName>

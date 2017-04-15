@@ -10,13 +10,11 @@ public class BaseDialog extends JDialog implements BaseView {
     protected Toolbar toolbar;
     protected int width, height;
 
-    public BaseDialog()
-    {
+    public BaseDialog() {
         this("Untitled dialog");
     }
 
-    public BaseDialog(String title, int width, int height)
-    {
+    public BaseDialog(String title, int width, int height) {
         super();
         this.width = width;
         this.height = height;
@@ -31,8 +29,7 @@ public class BaseDialog extends JDialog implements BaseView {
         initLayoutView();
     }
 
-    public BaseDialog(String title)
-    {
+    public BaseDialog(String title) {
         this(title, defaultWidth, defaultHeight);
     }
 
@@ -44,5 +41,10 @@ public class BaseDialog extends JDialog implements BaseView {
         add(toolbar);
 
         toolbar.setLoginInformationEnabled(false);
+    }
+
+    @Override
+    public void initData() {
+
     }
 }

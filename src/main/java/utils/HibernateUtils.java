@@ -1,18 +1,17 @@
 package main.java.utils;
 
-import com.fasterxml.classmate.AnnotationConfiguration;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import java.util.Properties;
+import javax.persistence.PersistenceException;
 
 /**
  * Created by Genius Doan on 4/11/2017.
  */
 public class HibernateUtils {
     private static final SessionFactory ourSessionFactory;
+
     static {
         try {
             Configuration configuration = new Configuration();
@@ -25,7 +24,7 @@ public class HibernateUtils {
         }
     }
 
-    public static Session getSession() throws HibernateException {
+    public static Session getSession() throws PersistenceException {
         return ourSessionFactory.openSession();
     }
 }

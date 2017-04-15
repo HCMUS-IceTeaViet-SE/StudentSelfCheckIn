@@ -1,6 +1,7 @@
 package main.java.view;
 
 import main.java.controller.subject.SubjectController;
+import main.java.model.ClassSubject;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -8,6 +9,8 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
+import java.util.List;
 
 import static main.java.view.MainFrame.LINE_HEIGHT;
 import static main.java.view.MainFrame.MARGIN;
@@ -23,7 +26,7 @@ public class SubjectListPanel extends JPanel {
     JTextField tfSearch;
     JButton btnSearch;
     JButton btnAddSubject;
-    TableModel tableModel;
+    DefaultTableModel tableModel;
     JTable subjectTable;
 
     //Local variables
@@ -31,13 +34,12 @@ public class SubjectListPanel extends JPanel {
     private OnClickListener mListener;
 
 
-    public SubjectListPanel(int x, int y, int width, int height)
-    {
+    public SubjectListPanel(int x, int y, int width, int height) {
         super();
         this.width = width;
         this.height = height;
 
-        setBounds(x,y, width, height);
+        setBounds(x, y, width, height);
         setBackground(Color.WHITE);
         setLayout(null);
 
@@ -54,7 +56,7 @@ public class SubjectListPanel extends JPanel {
         add(lblSearch);
 
         tfSearch = new JTextField();
-        tfSearch.setBounds(MARGIN + 160,MARGIN + LINE_HEIGHT, 140, LINE_HEIGHT);
+        tfSearch.setBounds(MARGIN + 160, MARGIN + LINE_HEIGHT, 140, LINE_HEIGHT);
         add(tfSearch);
 
         btnSearch = new JButton("Tìm");
@@ -90,13 +92,13 @@ public class SubjectListPanel extends JPanel {
             }
         };
 
-        subjectTable.setBounds(MARGIN, MARGIN + 80, width - 2*MARGIN, 240);
-        subjectTable.setPreferredScrollableViewportSize(new Dimension(450,63));
+        subjectTable.setBounds(MARGIN, MARGIN + 80, width - 2 * MARGIN, 240);
+        subjectTable.setPreferredScrollableViewportSize(new Dimension(450, 63));
         subjectTable.setFillsViewportHeight(true);
 
         JScrollPane scrollPane = new JScrollPane(subjectTable);
         scrollPane.setVisible(true);
-        scrollPane.setBounds(MARGIN, MARGIN + 80, width - 2*MARGIN, 240);
+        scrollPane.setBounds(MARGIN, MARGIN + 80, width - 2 * MARGIN, 240);
         add(scrollPane);
 
         //Events
@@ -119,14 +121,14 @@ public class SubjectListPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                    JTable target = (JTable)e.getSource();
-                   if (target.getSelectedColumn() == target.getColumnCount() - 1) {
-                       //Click the last column'
-                       //Show new frame
-                       ManageStudentDialog dialog = new ManageStudentDialog("Student list of " + target.getSelectedRow());
-                       dialog.setModal(true);
-                       dialog.setVisible(true);
-                   }
+                JTable target = (JTable) e.getSource();
+                if (target.getSelectedColumn() == target.getColumnCount() - 1) {
+                    //Click the last column'
+                    //Show new frame
+                    ManageStudentDialog dialog = new ManageStudentDialog("Student list of " + target.getSelectedRow());
+                    dialog.setModal(true);
+                    dialog.setVisible(true);
+                }
             }
         });
     }
@@ -136,8 +138,19 @@ public class SubjectListPanel extends JPanel {
         super.paintComponent(g);
     }
 
-    public void setOnButtonClickListener(OnClickListener listener)
-    {
+    public void setOnButtonClickListener(OnClickListener listener) {
         this.mListener = listener;
+    }
+
+    public void initData() {
+        tableModel.setRowCount(0);
+        List<ClassSubject> subjectList = SubjectController.getInstance().getSubjectList();
+
+        for (int i = 0; i < subjectList.size(); i++)
+        {
+            ClassSubject subject = subjectList.get(i);
+            String[] row = {subject.getSubjectId(), subject.getSubjectName(), String.valueOf(SubjectController.getInstance().getStudentList(subject.getSubjectId()).size())};
+            tableModel.addRow(row);
+        }
     }
 }

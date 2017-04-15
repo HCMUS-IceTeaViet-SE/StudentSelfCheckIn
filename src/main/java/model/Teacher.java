@@ -1,5 +1,5 @@
 package main.java.model;
-// Generated Apr 11, 2017 10:02:26 PM by Hibernate Tools 4.3.1
+// Generated Apr 15, 2017 9:17:45 PM by Hibernate Tools 4.3.1
 
 
 

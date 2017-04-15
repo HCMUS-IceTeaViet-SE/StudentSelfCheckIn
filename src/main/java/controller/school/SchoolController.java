@@ -9,8 +9,8 @@ import main.java.service.school.AccountService;
  */
 public class SchoolController extends BaseController {
     private AccountService accountService;
-    protected SchoolController()
-    {
+
+    protected SchoolController() {
         accountService = new AccountService();
     }
 

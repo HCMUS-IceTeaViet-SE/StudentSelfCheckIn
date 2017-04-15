@@ -48,6 +48,7 @@ CREATE TABLE Attendance(
 CREATE TABLE Student_Subject(
 	StudentID varchar(10),
     SubjectID varchar(10),
+    Note varchar(45),
     primary key(StudentID, SubjectID),
     foreign key(StudentID) references Student(StudentID),
     foreign key(SubjectID) references ClassSubject(SubjectID)

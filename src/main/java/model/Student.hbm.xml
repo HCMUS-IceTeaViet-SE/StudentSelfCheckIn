@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 11, 2017 10:02:27 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 15, 2017 9:17:47 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="main.java.model.Student" table="student" catalog="selfcheckindatabase" optimistic-lock="version">
         <id name="studentId" type="string">
@@ -26,13 +26,11 @@
         <property name="address" type="string">
             <column name="Address" length="200" />
         </property>
-        <set name="classsubjects" table="student_subject" inverse="false" lazy="true" fetch="select">
+        <set name="studentSubjects" table="student_subject" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="StudentID" length="10" not-null="true" />
             </key>
-            <many-to-many entity-name="main.java.model.ClassSubject">
-                <column name="SubjectID" length="10" not-null="true" />
-            </many-to-many>
+            <one-to-many class="main.java.model.StudentSubject" />
         </set>
         <set name="attendances" table="attendance" inverse="true" lazy="true" fetch="select">
             <key>

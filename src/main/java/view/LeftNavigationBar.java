@@ -24,8 +24,7 @@ public class LeftNavigationBar extends JPanel {
     private Color selectedColor, normalColor;
 
 
-    public LeftNavigationBar(int x, int y, int width, int height)
-    {
+    public LeftNavigationBar(int x, int y, int width, int height) {
         super();
         this.width = width;
         setBounds(x, y, width, height);
@@ -39,17 +38,17 @@ public class LeftNavigationBar extends JPanel {
 
     private void initContentLayout() {
         btnListSubject = new JButton("Xem danh sách môn học");
-        btnListSubject.setBounds(0,0, width, 64);
+        btnListSubject.setBounds(0, 0, width, 64);
         btnListSubject.setForeground(Color.WHITE);
         add(btnListSubject);
 
         btnModifySubject = new JButton("Thêm/Chỉnh sửa môn học");
-        btnModifySubject.setBounds(0,64, width, 64);
+        btnModifySubject.setBounds(0, 64, width, 64);
         btnModifySubject.setForeground(Color.WHITE);
         add(btnModifySubject);
 
         btnShowCheckInList = new JButton("Xem kết quả điểm danh");
-        btnShowCheckInList.setBounds(0,64+64, width, 64);
+        btnShowCheckInList.setBounds(0, 64 + 64, width, 64);
         btnShowCheckInList.setForeground(Color.WHITE);
         add(btnShowCheckInList);
 
@@ -87,16 +86,14 @@ public class LeftNavigationBar extends JPanel {
         });
     }
 
-    public void setOnClickListener(OnClickListener listener)
-    {
+    public void setOnClickListener(OnClickListener listener) {
         if (listener != null)
             this.mListener = listener;
         else
             System.err.println("Can not set listener for a null object!");
     }
 
-    public void setNavigationBarItem(int id)
-    {
+    public void setNavigationBarItem(int id) {
         clearColor();
         switch (id) {
             case LeftNavigationBar.R_ID_BTN_LIST_SUBJECT:
@@ -120,8 +117,7 @@ public class LeftNavigationBar extends JPanel {
 
 
     //
-    private void clearColor()
-    {
+    private void clearColor() {
         btnListSubject.setBackground(normalColor);
         btnModifySubject.setBackground(normalColor);
         btnShowCheckInList.setBackground(normalColor);

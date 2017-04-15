@@ -13,6 +13,7 @@
       <root url="jar://$PROJECT_DIR$/lib/jboss-logging-3.3.0.Final.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/hibernate-core-5.2.9.Final.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-5.1.41-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jdatepicker-1.2.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

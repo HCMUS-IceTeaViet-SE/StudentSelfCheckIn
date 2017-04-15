@@ -47,8 +47,7 @@ public class Toolbar extends JPanel {
                     mListener.onClick(R_ID_BTN_SIGNOUT);
                     isSignedIn = false;
                     btnLogin.setText("Đăng nhập");
-                }
-                else {
+                } else {
                     mListener.onClick(R_ID_BTN_SIGNIN);
                     isSignedIn = true;
                     btnLogin.setText("Đăng xuất");
@@ -58,8 +57,8 @@ public class Toolbar extends JPanel {
     }
 
     private void initContentLayout() {
-        int logoSize = defaultHeight - 2*MARGIN;
-        JLabel logo = new JLabel(UIUtils.makeIcon(getClass(), "/main/res/logo.png", logoSize,logoSize));
+        int logoSize = defaultHeight - 2 * MARGIN;
+        JLabel logo = new JLabel(UIUtils.makeIcon(getClass(), "/main/res/logo.png", logoSize, logoSize));
         logo.setBounds(MARGIN, MARGIN, logoSize, logoSize);
         add(logo);
 
@@ -76,7 +75,7 @@ public class Toolbar extends JPanel {
         add(jSubTitle);
 
         lblUser = new JLabel("Xin chào, Đoàn Hiếu Tâm");
-        lblUser.setBounds(defaultWidth - 160 - 2*MARGIN, MARGIN, 160,LINE_HEIGHT);
+        lblUser.setBounds(defaultWidth - 160 - 2 * MARGIN, MARGIN, 160, LINE_HEIGHT);
         lblUser.setFont(new Font("Sans-serif", Font.PLAIN, 14));
         lblUser.setForeground(Color.WHITE);
         add(lblUser);
@@ -84,30 +83,26 @@ public class Toolbar extends JPanel {
         btnLogin = new JButton("Đăng nhập");
         if (isSignedIn)
             btnLogin.setText("Đăng xuất");
-        btnLogin.setBounds(defaultWidth - 160 - 2*MARGIN, MARGIN + LINE_HEIGHT, 160,LINE_HEIGHT);
+        btnLogin.setBounds(defaultWidth - 160 - 2 * MARGIN, MARGIN + LINE_HEIGHT, 160, LINE_HEIGHT);
         btnLogin.setBackground(Color.WHITE);
         btnLogin.setForeground(Color.decode(MATERIAL_TOOLBAR_COLOR));
         UIUtils.setEmptyBorder(btnLogin);
         add(btnLogin);
     }
 
-    public int getHeight()
-    {
+    public int getHeight() {
         return defaultHeight;
     }
 
-    public int getWidth()
-    {
+    public int getWidth() {
         return defaultWidth;
     }
 
-    public void setOnSignButtonClickListener(OnClickListener listener)
-    {
+    public void setOnSignButtonClickListener(OnClickListener listener) {
         this.mListener = listener;
     }
 
-    public void setLoginInformationEnabled(boolean enabled)
-    {
+    public void setLoginInformationEnabled(boolean enabled) {
         lblUser.setVisible(enabled);
         btnLogin.setVisible(enabled);
     }

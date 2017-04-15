@@ -1,9 +1,10 @@
 package main.java.view;
 
-import main.java.utils.UIUtils;
-
+import main.java.controller.subject.SubjectController;
+import main.java.model.ClassSubject;
 import javax.swing.*;
-import java.awt.*;
+import java.util.List;
+
 
 /**
  * Created by Genius Doan on 4/11/2017.
@@ -23,13 +24,11 @@ public class MainFrame extends BaseFrame {
     private int currMainPanelId = 0;
 
 
-    public MainFrame()
-    {
+    public MainFrame() {
         super();
     }
 
-    public MainFrame(String title)
-    {
+    public MainFrame(String title) {
         super(title);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         toolbar.setLoginInformationEnabled(true);
@@ -44,11 +43,11 @@ public class MainFrame extends BaseFrame {
         add(leftNavigationBar);
 
         //Main content
-        subjectListPanel = new SubjectListPanel(240,toolbar.getHeight(), defaultWidth - 200, defaultHeight - toolbar.getHeight());
+        subjectListPanel = new SubjectListPanel(240, toolbar.getHeight(), defaultWidth - 200, defaultHeight - toolbar.getHeight());
         add(subjectListPanel);
 
         subjectModifyPanel = new SubjectModifyPanel(240, toolbar.getHeight(), defaultWidth - 240, defaultHeight - toolbar.getHeight());
-        checkInListPanel = new CheckInListPanel(240,toolbar.getHeight(), defaultWidth - 240, defaultHeight - toolbar.getHeight());
+        checkInListPanel = new CheckInListPanel(240, toolbar.getHeight(), defaultWidth - 240, defaultHeight - toolbar.getHeight());
 
         leftNavigationBar.setOnClickListener(new OnClickListener() {
             @Override
@@ -72,12 +71,18 @@ public class MainFrame extends BaseFrame {
         });
     }
 
+    @Override
+    public void initData() {
+        super.initData();
+        subjectListPanel.initData();
+    }
+
 
     private void setRightContentPanel(int id) {
         switch (id) {
             case LeftNavigationBar.R_ID_BTN_LIST_SUBJECT:
                 if (subjectListPanel == null) {
-                    subjectListPanel = new SubjectListPanel(240,toolbar.getHeight(), defaultWidth - 240, defaultHeight - toolbar.getHeight());
+                    subjectListPanel = new SubjectListPanel(240, toolbar.getHeight(), defaultWidth - 240, defaultHeight - toolbar.getHeight());
                 }
                 if (currMainPanelId != LeftNavigationBar.R_ID_BTN_LIST_SUBJECT) {
                     //Replace
@@ -104,7 +109,7 @@ public class MainFrame extends BaseFrame {
 
             case LeftNavigationBar.R_ID_BTN_SHOW_CHECKIN_LIST:
                 if (checkInListPanel == null) {
-                    checkInListPanel = new CheckInListPanel(240,toolbar.getHeight(), defaultWidth - 240, defaultHeight - toolbar.getHeight());
+                    checkInListPanel = new CheckInListPanel(240, toolbar.getHeight(), defaultWidth - 240, defaultHeight - toolbar.getHeight());
                 }
                 if (currMainPanelId != LeftNavigationBar.R_ID_BTN_SHOW_CHECKIN_LIST) {
                     //Replace
@@ -123,8 +128,7 @@ public class MainFrame extends BaseFrame {
         repaint();
     }
 
-    private void setLeftNavigationBar(int id)
-    {
+    private void setLeftNavigationBar(int id) {
         leftNavigationBar.setNavigationBarItem(id);
         currMainPanelId = id;
     }

@@ -9,21 +9,18 @@ import javax.swing.*;
  */
 public abstract class BaseFrame extends JFrame implements BaseView {
 
-    Toolbar toolbar = null;
     protected int width, height;
+    Toolbar toolbar = null;
 
-    protected BaseFrame()
-    {
+    protected BaseFrame() {
         this("Untitled Frame");
     }
 
-    protected  BaseFrame(String title)
-    {
+    protected BaseFrame(String title) {
         this(title, defaultWidth, defaultHeight);
     }
 
-    protected BaseFrame(String title, int width, int height)
-    {
+    protected BaseFrame(String title, int width, int height) {
         super(title);
         this.width = width;
         this.height = height;
@@ -35,13 +32,17 @@ public abstract class BaseFrame extends JFrame implements BaseView {
 
         //Init layout
         initLayoutView();
+        initData();
     }
 
     @Override
-    public void initLayoutView()
-    {
+    public void initLayoutView() {
         //Toolbar
         toolbar = new Toolbar(width, 96);
         add(toolbar);
+    }
+
+    @Override
+    public void initData() {
     }
 }

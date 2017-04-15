@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<persistence xmlns="http://java.sun.com/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://java.sun.com/xml/ns/persistence"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
     <persistence-unit name="PersistenceObject">
@@ -27,9 +27,12 @@
         <class>main.java.model.Teacher</class>
         <class>main.java.model.Timetable</class>
         <properties>
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver">com.mysql.jdbc.Driver</property>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver">com.mysql.jdbc.Driver
+            </property>
             <property name="hibernate.connection.password">XXXXXX</property>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306">jdbc:mysql://<hostname>/<database></property>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306">jdbc:mysql://<hostname>/
+                <database>
+            </property>
             <property name="hibernate.connection.username">XXXXX</property>
             <property name="hibernate.default_schema">XXXXXX</property>
             <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>

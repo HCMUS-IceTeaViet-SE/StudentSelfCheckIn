@@ -167,12 +167,12 @@ public class FileUtils {
     /**
      * Export a list of student to CSV file
      *
-     * @param  filePath the string path of data file
+     * @param filePath the string path of data file
      */
     public void exportToCSV(String filePath, List<BaseModel> data) throws IOException {
         Writer writer = new FileWriter(filePath);
         for (BaseModel item : data) {
-            FileUtils.writeLine(writer, item.toStringList());
+            //FileUtils.writeLine(writer, item.toStringList());
         }
 
         writer.flush();
