@@ -11,66 +11,69 @@ import java.util.Set;
 public class ClassSubject implements java.io.Serializable {
 
 
-     private String subjectId;
-     private String subjectName;
-     private Set studentSubjects = new HashSet(0);
-     private Set timetables = new HashSet(0);
-     private Set attendances = new HashSet(0);
+    private String subjectId;
+    private String subjectName;
+    private Set studentSubjects = new HashSet(0);
+    private Set timetables = new HashSet(0);
+    private Set attendances = new HashSet(0);
 
     public ClassSubject() {
     }
 
-	
+
     public ClassSubject(String subjectId) {
         this.subjectId = subjectId;
     }
 
-    public ClassSubject(String subjectId, String subjectName)
-    {
+    public ClassSubject(String subjectId, String subjectName) {
         this.subjectId = subjectId;
         this.subjectName = subjectName;
     }
 
     public ClassSubject(String subjectId, String subjectName, Set studentSubjects, Set timetables, Set attendances) {
-       this.subjectId = subjectId;
-       this.subjectName = subjectName;
-       this.studentSubjects = studentSubjects;
-       this.timetables = timetables;
-       this.attendances = attendances;
+        this.subjectId = subjectId;
+        this.subjectName = subjectName;
+        this.studentSubjects = studentSubjects;
+        this.timetables = timetables;
+        this.attendances = attendances;
     }
-   
+
     public String getSubjectId() {
         return this.subjectId;
     }
-    
+
     public void setSubjectId(String subjectId) {
         this.subjectId = subjectId;
     }
+
     public String getSubjectName() {
         return this.subjectName;
     }
-    
+
     public void setSubjectName(String subjectName) {
         this.subjectName = subjectName;
     }
+
     public Set getStudentSubjects() {
         return this.studentSubjects;
     }
-    
+
     public void setStudentSubjects(Set studentSubjects) {
         this.studentSubjects = studentSubjects;
     }
+
     public Set getTimetables() {
         return this.timetables;
     }
-    
+
     public void setTimetables(Set timetables) {
         this.timetables = timetables;
     }
+
     public Set getAttendances() {
         return this.attendances;
     }
-    
+
     public void setAttendances(Set attendances) {
         this.attendances = attendances;
     }

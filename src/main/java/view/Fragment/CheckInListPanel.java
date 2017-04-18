@@ -1,50 +1,45 @@
-package main.java.view;
+package main.java.view.Fragment;
 
 import main.java.controller.subject.SubjectController;
 import main.java.model.ClassSubject;
 import main.java.model.Student;
-import main.java.model.StudentSubject;
-import org.xml.sax.helpers.DefaultHandler;
+import main.java.view.OnClickListener;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
-
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
 
-import static main.java.view.MainFrame.LINE_HEIGHT;
-import static main.java.view.MainFrame.MARGIN;
+import static main.java.view.Frame.BaseFrame.LINE_HEIGHT;
+import static main.java.view.Frame.BaseFrame.MARGIN;
 
 /**
  * Created by Genius Doan on 4/12/2017.
  */
 public class CheckInListPanel extends JPanel {
 
-    //Local variables
-    private int width, height;
-    private OnClickListener mListener;
     DefaultTableModel tableModel;
     JScrollPane jScrollPaneAttendance;
     JTable attendanceTable;
     JComboBox<String> cbbSearch;
     JButton btnStatistic;
     JButton btnEdit;
+    //Local variables
+    private int width, height;
+    private OnClickListener mListener;
     //UI View variables
 
-    public CheckInListPanel(int x, int y, int width, int height)
-    {
+    public CheckInListPanel(int x, int y, int width, int height) {
         super();
 
         this.width = width;
         this.height = height;
 
-        setBounds(x,y, width, height);
+        setBounds(x, y, width, height);
         setBackground(Color.WHITE);
         setLayout(null);
         initLayoutView();
@@ -62,9 +57,9 @@ public class CheckInListPanel extends JPanel {
                     Student std = entry.getKey();
                     List<Boolean> value = entry.getValue();
 
-                    Object[] row = {std.getStudentId(), value.get(0),value.get(1),value.get(2),value.get(3),value.get(4),value.get(5)
-                            ,value.get(6),value.get(7),value.get(8),value.get(9),value.get(10),value.get(11)
-                            ,value.get(12),value.get(13),value.get(14)};
+                    Object[] row = {std.getStudentId(), value.get(0), value.get(1), value.get(2), value.get(3), value.get(4), value.get(5)
+                            , value.get(6), value.get(7), value.get(8), value.get(9), value.get(10), value.get(11)
+                            , value.get(12), value.get(13), value.get(14)};
 
                     tableModel.addRow(row);
                 }
@@ -75,14 +70,12 @@ public class CheckInListPanel extends JPanel {
     private void initData() {
         List<ClassSubject> subjectList = SubjectController.getInstance().getSubjectList();
 
-        for (int i = 0; i < subjectList.size(); i++)
-        {
+        for (int i = 0; i < subjectList.size(); i++) {
             cbbSearch.addItem(subjectList.get(i).getSubjectName());
         }
     }
 
-    private void initLayoutView()
-    {
+    private void initLayoutView() {
         JLabel lblStudentList = new JLabel("Kết quả điểm danh");
         lblStudentList.setBounds(MARGIN, MARGIN - 8, 240, LINE_HEIGHT);
         lblStudentList.setFont(new Font("Sans-serif", Font.BOLD, 18));
@@ -96,7 +89,7 @@ public class CheckInListPanel extends JPanel {
         add(lblSearch);
 
         cbbSearch = new JComboBox<>();
-        cbbSearch.setBounds(MARGIN + 160,MARGIN + LINE_HEIGHT, 300, LINE_HEIGHT);
+        cbbSearch.setBounds(MARGIN + 160, MARGIN + LINE_HEIGHT, 300, LINE_HEIGHT);
         add(cbbSearch);
 
         btnStatistic = new JButton("Thống kê");
@@ -105,16 +98,16 @@ public class CheckInListPanel extends JPanel {
         btnStatistic.setBackground(Color.decode("#616161"));
         add(btnStatistic);
 
-        String[] columns = new String[] {
-                "MSSV", "#1", "#2","#3","#4","#5","#6","#7",
-                "#8","#9","#10","#11","#12","#13","#14","#15"
+        String[] columns = new String[]{
+                "MSSV", "#1", "#2", "#3", "#4", "#5", "#6", "#7",
+                "#8", "#9", "#10", "#11", "#12", "#13", "#14", "#15"
         };
 
         //actual data for the table in a 2d array
-        Object[][] data = new Object[][] {
+        Object[][] data = new Object[][]{
         };
 
-        final Class[] columnClass3 = new Class[] {
+        final Class[] columnClass3 = new Class[]{
                 String.class, Boolean.class, Boolean.class, Boolean.class, Boolean.class, Boolean.class, Boolean.class
                 , Boolean.class, Boolean.class, Boolean.class, Boolean.class, Boolean.class, Boolean.class, Boolean.class
                 , Boolean.class, Boolean.class
@@ -123,14 +116,12 @@ public class CheckInListPanel extends JPanel {
         tableModel = new DefaultTableModel(data, columns) {
 
             @Override
-            public boolean isCellEditable(int row, int column)
-            {
+            public boolean isCellEditable(int row, int column) {
                 return true;
             }
 
             @Override
-            public Class<?> getColumnClass(int columnIndex)
-            {
+            public Class<?> getColumnClass(int columnIndex) {
                 return columnClass3[columnIndex];
             }
         };
@@ -155,17 +146,17 @@ public class CheckInListPanel extends JPanel {
 
         attendanceTable.setRowHeight(LINE_HEIGHT);
 
-        attendanceTable.setBounds(MARGIN, MARGIN + 80, width - 2*MARGIN, 240);
-        attendanceTable.setPreferredScrollableViewportSize(new Dimension(450,63));
+        attendanceTable.setBounds(MARGIN, MARGIN + 80, width - 2 * MARGIN, 240);
+        attendanceTable.setPreferredScrollableViewportSize(new Dimension(450, 63));
         attendanceTable.setFillsViewportHeight(true);
 
         JScrollPane scrollPane = new JScrollPane(attendanceTable);
         scrollPane.setVisible(true);
-        scrollPane.setBounds(MARGIN, MARGIN + 80, width - 2*MARGIN, 300);
+        scrollPane.setBounds(MARGIN, MARGIN + 80, width - 2 * MARGIN, 300);
         add(scrollPane);
 
         btnEdit = new JButton("Chỉnh sửa");
-        btnEdit.setBounds(width - 8*MARGIN,380 + 2*MARGIN,100,LINE_HEIGHT);
+        btnEdit.setBounds(width - 8 * MARGIN, 380 + 2 * MARGIN, 100, LINE_HEIGHT);
         btnEdit.setForeground(Color.WHITE);
         btnEdit.setBackground(Color.decode("#616161"));
         add(btnEdit);

@@ -1,25 +1,27 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Apr 15, 2017 9:17:47 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="main.java.model.StudentSubject" table="student_subject" catalog="selfcheckindatabase" optimistic-lock="version">
+    <class name="main.java.model.StudentSubject" table="student_subject" catalog="selfcheckindatabase"
+           optimistic-lock="version">
         <composite-id name="id" class="main.java.model.StudentSubjectId">
             <key-property name="studentId" type="string">
-                <column name="StudentID" length="10" />
+                <column name="StudentID" length="10"/>
             </key-property>
             <key-property name="subjectId" type="string">
-                <column name="SubjectID" length="10" />
+                <column name="SubjectID" length="10"/>
             </key-property>
         </composite-id>
-        <many-to-one name="classsubject" class="main.java.model.ClassSubject" update="false" insert="false" fetch="select">
-            <column name="SubjectID" length="10" not-null="true" />
+        <many-to-one name="classsubject" class="main.java.model.ClassSubject" update="false" insert="false"
+                     fetch="select">
+            <column name="SubjectID" length="10" not-null="true"/>
         </many-to-one>
         <many-to-one name="student" class="main.java.model.Student" update="false" insert="false" fetch="select">
-            <column name="StudentID" length="10" not-null="true" />
+            <column name="StudentID" length="10" not-null="true"/>
         </many-to-one>
         <property name="note" type="string">
-            <column name="Note" length="45" />
+            <column name="Note" length="45"/>
         </property>
     </class>
 </hibernate-mapping>

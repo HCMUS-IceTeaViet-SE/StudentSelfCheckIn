@@ -1,9 +1,9 @@
-package main.java.view;
+package main.java.view.Fragment;
 
 import main.java.controller.subject.SubjectController;
 import main.java.model.ClassSubject;
 import main.java.model.Timetable;
-import main.java.service.subject.TimeTableService;
+import main.java.view.OnClickListener;
 import net.sourceforge.jdatepicker.impl.JDatePanel_Calendar;
 
 import javax.swing.*;
@@ -11,18 +11,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
-import java.util.UUID;
 
-import static main.java.view.MainFrame.LINE_HEIGHT;
-import static main.java.view.MainFrame.MARGIN;
+import static main.java.view.Frame.BaseFrame.LINE_HEIGHT;
+import static main.java.view.Frame.BaseFrame.MARGIN;
 
 /**
  * Created by Genius Doan on 4/12/2017.
  */
 public class SubjectModifyPanel extends JPanel {
-
-    private int width, height;
-    private OnClickListener mListener;
 
     JTextField tfSubjectID;
     JTextField tfSubjectName;
@@ -39,17 +35,18 @@ public class SubjectModifyPanel extends JPanel {
     JSpinner spinnerSecond2;
     JCheckBox checkBox;
     JButton btnSave;
-    Date startDate ;
+    Date startDate;
     Date endDate;
+    private int width, height;
+    private OnClickListener mListener;
 
-    public SubjectModifyPanel(int x, int y, int width, int height)
-    {
+    public SubjectModifyPanel(int x, int y, int width, int height) {
         super();
 
         this.width = width;
         this.height = height;
 
-        setBounds(x,y, width, height);
+        setBounds(x, y, width, height);
         setBackground(Color.WHITE);
         setLayout(null);
 
@@ -68,8 +65,7 @@ public class SubjectModifyPanel extends JPanel {
         checkBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (checkBox.isSelected())
-                {
+                if (checkBox.isSelected()) {
                     jDatePanelEndDate.setEnabled(true);
                     jDatePanelStartDate.setEnabled(true);
                     cbbDate.setEnabled(true);
@@ -80,8 +76,7 @@ public class SubjectModifyPanel extends JPanel {
                     spinnerHour2.setEnabled(true);
                     spinnerMinute2.setEnabled(true);
                     spinnerSecond2.setEnabled(true);
-                }
-                else {
+                } else {
                     jDatePanelEndDate.setEnabled(false);
                     jDatePanelStartDate.setEnabled(false);
                     cbbDate.setEnabled(false);
@@ -115,7 +110,6 @@ public class SubjectModifyPanel extends JPanel {
         });
 
 
-
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -147,8 +141,7 @@ public class SubjectModifyPanel extends JPanel {
         });
     }
 
-    private void initLayoutView()
-    {
+    private void initLayoutView() {
         JLabel lblStudentList = new JLabel("Chỉnh sửa môn học");
         lblStudentList.setBounds(MARGIN, MARGIN - 8, 240, LINE_HEIGHT);
         lblStudentList.setFont(new Font("Sans-serif", Font.BOLD, 18));
@@ -168,50 +161,50 @@ public class SubjectModifyPanel extends JPanel {
         add(tfSubjectID);
 
         JLabel lblSubjectName = new JLabel("Nhập tên môn học");
-        lblSubjectName.setBounds(MARGIN, MARGIN + 2*LINE_HEIGHT, 160, LINE_HEIGHT);
+        lblSubjectName.setBounds(MARGIN, MARGIN + 2 * LINE_HEIGHT, 160, LINE_HEIGHT);
         lblSubjectName.setFont(new Font("Sans-serif", Font.PLAIN, 14));
         lblSubjectName.setForeground(Color.decode(Toolbar.MATERIAL_TOOLBAR_COLOR));
         add(lblSubjectName);
 
         tfSubjectName = new JTextField();
-        tfSubjectName.setBounds(MARGIN + 160, MARGIN + 2*LINE_HEIGHT, 160, LINE_HEIGHT);
+        tfSubjectName.setBounds(MARGIN + 160, MARGIN + 2 * LINE_HEIGHT, 160, LINE_HEIGHT);
         tfSubjectName.setFont(new Font("Sans-serif", Font.PLAIN, 14));
         tfSubjectName.setForeground(Color.decode(Toolbar.MATERIAL_TOOLBAR_COLOR));
         add(tfSubjectName);
 
         checkBox = new JCheckBox();
-        checkBox.setBounds(MARGIN, MARGIN + 3*LINE_HEIGHT, LINE_HEIGHT,LINE_HEIGHT);
+        checkBox.setBounds(MARGIN, MARGIN + 3 * LINE_HEIGHT, LINE_HEIGHT, LINE_HEIGHT);
         checkBox.setBackground(Color.WHITE);
         add(checkBox);
 
         JLabel lblCheckbox = new JLabel("Thêm thời khóa biểu");
-        lblCheckbox.setBounds(MARGIN + LINE_HEIGHT, MARGIN + 3*LINE_HEIGHT,160,LINE_HEIGHT);
+        lblCheckbox.setBounds(MARGIN + LINE_HEIGHT, MARGIN + 3 * LINE_HEIGHT, 160, LINE_HEIGHT);
         lblCheckbox.setFont(new Font("Sans-serif", Font.PLAIN, 14));
         lblCheckbox.setForeground(Color.decode(Toolbar.MATERIAL_TOOLBAR_COLOR));
         add(lblCheckbox);
 
         JLabel jLabelStartDate = new JLabel("Ngày bắt đầu: ");
-        jLabelStartDate.setBounds(MARGIN,MARGIN + LINE_HEIGHT*4,120,LINE_HEIGHT);
+        jLabelStartDate.setBounds(MARGIN, MARGIN + LINE_HEIGHT * 4, 120, LINE_HEIGHT);
         jLabelStartDate.setFont(new Font("Sans-serif", Font.PLAIN, 14));
         jLabelStartDate.setForeground(Color.decode(Toolbar.MATERIAL_TOOLBAR_COLOR));
         add(jLabelStartDate);
 
         jDatePanelStartDate = new JDatePanel_Calendar();
-        jDatePanelStartDate.setBounds(MARGIN +120,MARGIN+ 4*LINE_HEIGHT,160,150);
+        jDatePanelStartDate.setBounds(MARGIN + 120, MARGIN + 4 * LINE_HEIGHT, 160, 150);
         add(jDatePanelStartDate);
 
         JLabel jLabelEndDate = new JLabel("Ngày bắt đầu: ");
-        jLabelEndDate.setBounds(MARGIN + 300,MARGIN + LINE_HEIGHT*4,120,LINE_HEIGHT);
+        jLabelEndDate.setBounds(MARGIN + 300, MARGIN + LINE_HEIGHT * 4, 120, LINE_HEIGHT);
         jLabelEndDate.setFont(new Font("Sans-serif", Font.PLAIN, 14));
         jLabelEndDate.setForeground(Color.decode(Toolbar.MATERIAL_TOOLBAR_COLOR));
         add(jLabelEndDate);
 
         jDatePanelEndDate = new JDatePanel_Calendar();
-        jDatePanelEndDate.setBounds(MARGIN +420,MARGIN+ 4*LINE_HEIGHT,160,150);
+        jDatePanelEndDate.setBounds(MARGIN + 420, MARGIN + 4 * LINE_HEIGHT, 160, 150);
         add(jDatePanelEndDate);
 
         JLabel labelDay = new JLabel("Nhập thứ:");
-        labelDay.setBounds(MARGIN,MARGIN + 5*LINE_HEIGHT +150,120,LINE_HEIGHT);
+        labelDay.setBounds(MARGIN, MARGIN + 5 * LINE_HEIGHT + 150, 120, LINE_HEIGHT);
         labelDay.setFont(new Font("Sans-serif", Font.PLAIN, 14));
         labelDay.setForeground(Color.decode(Toolbar.MATERIAL_TOOLBAR_COLOR));
         add(labelDay);
@@ -224,12 +217,12 @@ public class SubjectModifyPanel extends JPanel {
         cbbDate.addItem("Thứ sáu");
         cbbDate.addItem("Thứ bảy");
         cbbDate.addItem("Chủ nhật");
-        cbbDate.setBounds(MARGIN + 120,MARGIN + 5*LINE_HEIGHT +150,100,LINE_HEIGHT);
-        cbbDate.setBackground(new Color(247,249,249));
+        cbbDate.setBounds(MARGIN + 120, MARGIN + 5 * LINE_HEIGHT + 150, 100, LINE_HEIGHT);
+        cbbDate.setBackground(new Color(247, 249, 249));
         add(cbbDate);
 
         JLabel labelClass = new JLabel("Nhập phòng học:");
-        labelClass.setBounds(MARGIN+ 300,MARGIN + 5*LINE_HEIGHT +150,150,30);
+        labelClass.setBounds(MARGIN + 300, MARGIN + 5 * LINE_HEIGHT + 150, 150, 30);
         labelClass.setFont(new Font("Sans-serif", Font.PLAIN, 14));
         labelClass.setForeground(Color.decode(Toolbar.MATERIAL_TOOLBAR_COLOR));
         add(labelClass);
@@ -270,60 +263,60 @@ public class SubjectModifyPanel extends JPanel {
         cbbRoom.addItem("F303");
         cbbRoom.addItem("F304");
 
-        cbbRoom.setBounds(MARGIN+ 450,MARGIN + 5*LINE_HEIGHT +150,100,LINE_HEIGHT);
-        cbbRoom.setBackground(new Color(247,249,249));
+        cbbRoom.setBounds(MARGIN + 450, MARGIN + 5 * LINE_HEIGHT + 150, 100, LINE_HEIGHT);
+        cbbRoom.setBackground(new Color(247, 249, 249));
         add(cbbRoom);
 
         JLabel labelStartTime = new JLabel("Nhập Giờ bắt đầu:");
-        labelStartTime.setBounds(MARGIN,MARGIN + 7* LINE_HEIGHT + 150,120,LINE_HEIGHT);
+        labelStartTime.setBounds(MARGIN, MARGIN + 7 * LINE_HEIGHT + 150, 120, LINE_HEIGHT);
         labelStartTime.setFont(new Font("Sans-serif", Font.PLAIN, 14));
         labelStartTime.setForeground(Color.decode(Toolbar.MATERIAL_TOOLBAR_COLOR));
         add(labelStartTime);
 
-        spinnerHourModel = new SpinnerNumberModel(0,0,23,1);
+        spinnerHourModel = new SpinnerNumberModel(0, 0, 23, 1);
         spinnerHour = new JSpinner(spinnerHourModel);
-        spinnerHour.setBounds(MARGIN + 120,MARGIN + 7* LINE_HEIGHT + 150,50,LINE_HEIGHT);
+        spinnerHour.setBounds(MARGIN + 120, MARGIN + 7 * LINE_HEIGHT + 150, 50, LINE_HEIGHT);
         spinnerHour.setFont(new Font("Serif", Font.ROMAN_BASELINE, 20));
         add(spinnerHour);
 
-        SpinnerNumberModel spinnerMinuteModel = new SpinnerNumberModel(0,0,59,1);
+        SpinnerNumberModel spinnerMinuteModel = new SpinnerNumberModel(0, 0, 59, 1);
         spinnerMinute = new JSpinner(spinnerMinuteModel);
-        spinnerMinute.setBounds(MARGIN+180,MARGIN + 7* LINE_HEIGHT + 150,50,LINE_HEIGHT);
+        spinnerMinute.setBounds(MARGIN + 180, MARGIN + 7 * LINE_HEIGHT + 150, 50, LINE_HEIGHT);
         spinnerMinute.setFont(new Font("Serif", Font.ROMAN_BASELINE, 20));
         add(spinnerMinute);
 
-        SpinnerNumberModel spinnerSecondModel = new SpinnerNumberModel(0,0,59,1);
+        SpinnerNumberModel spinnerSecondModel = new SpinnerNumberModel(0, 0, 59, 1);
         spinnerSecond = new JSpinner(spinnerSecondModel);
-        spinnerSecond.setBounds(MARGIN + 240,MARGIN + 7* LINE_HEIGHT + 150,50,LINE_HEIGHT);
+        spinnerSecond.setBounds(MARGIN + 240, MARGIN + 7 * LINE_HEIGHT + 150, 50, LINE_HEIGHT);
         spinnerSecond.setFont(new Font("Serif", Font.ROMAN_BASELINE, 20));
         add(spinnerSecond);
 
         JLabel labelEndTime = new JLabel("Nhập Giờ kết thúc:");
-        labelEndTime.setBounds(MARGIN + 300,MARGIN + 7* LINE_HEIGHT + 150,120,LINE_HEIGHT);
+        labelEndTime.setBounds(MARGIN + 300, MARGIN + 7 * LINE_HEIGHT + 150, 120, LINE_HEIGHT);
         labelEndTime.setFont(new Font("Sans-serif", Font.PLAIN, 14));
         labelEndTime.setForeground(Color.decode(Toolbar.MATERIAL_TOOLBAR_COLOR));
         add(labelEndTime);
 
-        SpinnerNumberModel spinnerHourModel2 = new SpinnerNumberModel(0,0,23,1);
+        SpinnerNumberModel spinnerHourModel2 = new SpinnerNumberModel(0, 0, 23, 1);
         spinnerHour2 = new JSpinner(spinnerHourModel2);
-        spinnerHour2.setBounds(MARGIN + 420,MARGIN + 7* LINE_HEIGHT + 150,50,LINE_HEIGHT);
+        spinnerHour2.setBounds(MARGIN + 420, MARGIN + 7 * LINE_HEIGHT + 150, 50, LINE_HEIGHT);
         spinnerHour2.setFont(new Font("Serif", Font.ROMAN_BASELINE, 20));
         add(spinnerHour2);
 
-        SpinnerNumberModel spinnerMinuteModel2 = new SpinnerNumberModel(0,0,59,1);
+        SpinnerNumberModel spinnerMinuteModel2 = new SpinnerNumberModel(0, 0, 59, 1);
         spinnerMinute2 = new JSpinner(spinnerMinuteModel2);
-        spinnerMinute2.setBounds(MARGIN+480,MARGIN + 7* LINE_HEIGHT + 150,50,LINE_HEIGHT);
+        spinnerMinute2.setBounds(MARGIN + 480, MARGIN + 7 * LINE_HEIGHT + 150, 50, LINE_HEIGHT);
         spinnerMinute2.setFont(new Font("Serif", Font.ROMAN_BASELINE, 20));
         add(spinnerMinute2);
 
-        SpinnerNumberModel spinnerSecondModel2 = new SpinnerNumberModel(0,0,59,1);
+        SpinnerNumberModel spinnerSecondModel2 = new SpinnerNumberModel(0, 0, 59, 1);
         spinnerSecond2 = new JSpinner(spinnerSecondModel2);
-        spinnerSecond2.setBounds(MARGIN + 540,MARGIN + 7* LINE_HEIGHT + 150,50,LINE_HEIGHT);
+        spinnerSecond2.setBounds(MARGIN + 540, MARGIN + 7 * LINE_HEIGHT + 150, 50, LINE_HEIGHT);
         spinnerSecond2.setFont(new Font("Serif", Font.ROMAN_BASELINE, 20));
         add(spinnerSecond2);
 
         btnSave = new JButton("Lưu");
-        btnSave.setBounds(width - 10 * MARGIN, 3 *MARGIN ,100,40);
+        btnSave.setBounds(width - 10 * MARGIN, 3 * MARGIN, 100, 40);
         btnSave.setFont(new Font("Serif", Font.ROMAN_BASELINE, 20));
 
         add(btnSave);

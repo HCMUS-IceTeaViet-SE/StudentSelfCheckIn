@@ -1,19 +1,18 @@
-package main.java.view;
+package main.java.view.Frame;
 
-import main.java.controller.subject.SubjectController;
-import main.java.model.ClassSubject;
+import main.java.view.Fragment.CheckInListPanel;
+import main.java.view.Fragment.LeftNavigationBar;
+import main.java.view.Fragment.SubjectListPanel;
+import main.java.view.Fragment.SubjectModifyPanel;
+import main.java.view.OnClickListener;
+
 import javax.swing.*;
-import java.util.List;
 
 
 /**
  * Created by Genius Doan on 4/11/2017.
  */
 public class MainFrame extends BaseFrame {
-    public static final int MARGIN_TOP = 80;
-    public static final int MARGIN = 16;
-    public static final int LINE_HEIGHT = 32;
-
     //UI View variables
     private LeftNavigationBar leftNavigationBar;
     private SubjectListPanel subjectListPanel;
@@ -25,13 +24,19 @@ public class MainFrame extends BaseFrame {
 
 
     public MainFrame() {
-        super();
+        this("Điểm danh - HCMUS");
     }
 
     public MainFrame(String title) {
-        super(title);
+        this(title, defaultWidth, defaultHeight);
+    }
+
+    public MainFrame(String title, int width, int height) {
+        super(title, width, height);
+        this.width = width;
+        this.height = height;
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        toolbar.setLoginInformationEnabled(true);
+        mToolbar.setLoginInformationEnabled(true);
     }
 
     @Override
@@ -39,15 +44,15 @@ public class MainFrame extends BaseFrame {
         super.initLayoutView();
 
         //Left navigation bar
-        leftNavigationBar = new LeftNavigationBar(0, toolbar.getHeight(), 240, defaultHeight - toolbar.getHeight());
+        leftNavigationBar = new LeftNavigationBar(0, mToolbar.getHeight(), 240, height - mToolbar.getHeight());
         add(leftNavigationBar);
 
         //Main content
-        subjectListPanel = new SubjectListPanel(240, toolbar.getHeight(), defaultWidth - 200, defaultHeight - toolbar.getHeight());
-        add(subjectListPanel);
+        subjectListPanel = new SubjectListPanel(leftNavigationBar.getWidth(), mToolbar.getHeight(), width - leftNavigationBar.getWidth(), height - mToolbar.getHeight());
+        subjectModifyPanel = new SubjectModifyPanel(leftNavigationBar.getWidth(), mToolbar.getHeight(), width - leftNavigationBar.getWidth(), height - mToolbar.getHeight());
+        checkInListPanel = new CheckInListPanel(leftNavigationBar.getWidth(), mToolbar.getHeight(), width - leftNavigationBar.getWidth(), height - mToolbar.getHeight());
 
-        subjectModifyPanel = new SubjectModifyPanel(240, toolbar.getHeight(), defaultWidth - 240, defaultHeight - toolbar.getHeight());
-        checkInListPanel = new CheckInListPanel(240, toolbar.getHeight(), defaultWidth - 240, defaultHeight - toolbar.getHeight());
+        add(subjectListPanel);
 
         leftNavigationBar.setOnClickListener(new OnClickListener() {
             @Override
@@ -63,7 +68,7 @@ public class MainFrame extends BaseFrame {
             }
         });
 
-        toolbar.setOnSignButtonClickListener(new OnClickListener() {
+        mToolbar.setOnSignButtonClickListener(new OnClickListener() {
             @Override
             public void onClick(int id) {
 
@@ -82,7 +87,7 @@ public class MainFrame extends BaseFrame {
         switch (id) {
             case LeftNavigationBar.R_ID_BTN_LIST_SUBJECT:
                 if (subjectListPanel == null) {
-                    subjectListPanel = new SubjectListPanel(240, toolbar.getHeight(), defaultWidth - 240, defaultHeight - toolbar.getHeight());
+                    subjectListPanel = new SubjectListPanel(leftNavigationBar.getWidth(), mToolbar.getHeight(), width - leftNavigationBar.getWidth(), height - mToolbar.getHeight());
                 }
                 if (currMainPanelId != LeftNavigationBar.R_ID_BTN_LIST_SUBJECT) {
                     //Replace
@@ -95,7 +100,7 @@ public class MainFrame extends BaseFrame {
 
             case LeftNavigationBar.R_ID_BTN_MODIFY_SUBJECT:
                 if (subjectModifyPanel == null) {
-                    subjectModifyPanel = new SubjectModifyPanel(240, toolbar.getHeight(), defaultWidth - 240, defaultHeight - toolbar.getHeight());
+                    subjectModifyPanel = new SubjectModifyPanel(leftNavigationBar.getWidth(), mToolbar.getHeight(), width - leftNavigationBar.getWidth(), height - mToolbar.getHeight());
                 }
                 if (currMainPanelId != LeftNavigationBar.R_ID_BTN_MODIFY_SUBJECT) {
                     //Replace
@@ -109,7 +114,7 @@ public class MainFrame extends BaseFrame {
 
             case LeftNavigationBar.R_ID_BTN_SHOW_CHECKIN_LIST:
                 if (checkInListPanel == null) {
-                    checkInListPanel = new CheckInListPanel(240, toolbar.getHeight(), defaultWidth - 240, defaultHeight - toolbar.getHeight());
+                    checkInListPanel = new CheckInListPanel(leftNavigationBar.getWidth(), mToolbar.getHeight(), width - leftNavigationBar.getWidth(), height - mToolbar.getHeight());
                 }
                 if (currMainPanelId != LeftNavigationBar.R_ID_BTN_SHOW_CHECKIN_LIST) {
                     //Replace

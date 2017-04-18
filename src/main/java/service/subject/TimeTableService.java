@@ -1,7 +1,6 @@
 package main.java.service.subject;
 
 import main.java.model.Timetable;
-import main.java.model.Timetable;
 import main.java.service.BaseService;
 import main.java.service.IBaseService;
 import main.java.utils.HibernateUtils;

@@ -1,16 +1,21 @@
-package main.java.view;
+package main.java.view.Frame;
 
-import main.java.controller.BaseController;
+import main.java.view.BaseView;
+import main.java.view.Fragment.Toolbar;
 
 import javax.swing.*;
+
 
 /**
  * Created by Genius Doan on 4/14/2017.
  */
 public abstract class BaseFrame extends JFrame implements BaseView {
+    public static final int MARGIN_TOP = 80;
+    public static final int MARGIN = 16;
+    public static final int LINE_HEIGHT = 32;
 
     protected int width, height;
-    Toolbar toolbar = null;
+    protected Toolbar mToolbar = null;
 
     protected BaseFrame() {
         this("Untitled Frame");
@@ -26,7 +31,7 @@ public abstract class BaseFrame extends JFrame implements BaseView {
         this.height = height;
 
         // invoke the JFrame constructor
-        setSize(width, height);
+        setSize(width + MARGIN, height + MARGIN);
         //setLayout( new FlowLayout() );       // set the layout manager
         setLayout(null);
 
@@ -38,8 +43,8 @@ public abstract class BaseFrame extends JFrame implements BaseView {
     @Override
     public void initLayoutView() {
         //Toolbar
-        toolbar = new Toolbar(width, 96);
-        add(toolbar);
+        mToolbar = new Toolbar(width, 96);
+        add(mToolbar);
     }
 
     @Override

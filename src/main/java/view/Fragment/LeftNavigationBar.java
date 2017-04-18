@@ -1,4 +1,6 @@
-package main.java.view;
+package main.java.view.Fragment;
+
+import main.java.view.OnClickListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,13 +22,14 @@ public class LeftNavigationBar extends JPanel {
 
     //Local variables
     private OnClickListener mListener;
-    private int width;
+    private int width, height;
     private Color selectedColor, normalColor;
 
 
     public LeftNavigationBar(int x, int y, int width, int height) {
         super();
         this.width = width;
+        this.height = height;
         setBounds(x, y, width, height);
         setLayout(null);
 

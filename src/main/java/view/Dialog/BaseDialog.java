@@ -1,4 +1,7 @@
-package main.java.view;
+package main.java.view.Dialog;
+
+import main.java.view.BaseView;
+import main.java.view.Fragment.Toolbar;
 
 import javax.swing.*;
 

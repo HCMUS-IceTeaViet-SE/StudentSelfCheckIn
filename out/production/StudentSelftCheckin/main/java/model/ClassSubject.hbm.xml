@@ -1,33 +1,34 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Apr 15, 2017 9:17:47 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="main.java.model.ClassSubject" table="classsubject" catalog="selfcheckindatabase" optimistic-lock="version">
+    <class name="main.java.model.ClassSubject" table="classsubject" catalog="selfcheckindatabase"
+           optimistic-lock="version">
         <id name="subjectId" type="string">
-            <column name="SubjectID" length="10" />
-            <generator class="assigned" />
+            <column name="SubjectID" length="10"/>
+            <generator class="assigned"/>
         </id>
         <property name="subjectName" type="string">
-            <column name="SubjectName" length="50" />
+            <column name="SubjectName" length="50"/>
         </property>
         <set name="studentSubjects" table="student_subject" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="SubjectID" length="10" not-null="true" />
+                <column name="SubjectID" length="10" not-null="true"/>
             </key>
-            <one-to-many class="main.java.model.StudentSubject" />
+            <one-to-many class="main.java.model.StudentSubject"/>
         </set>
         <set name="timetables" table="timetable" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="SubjectID" length="10" />
+                <column name="SubjectID" length="10"/>
             </key>
-            <one-to-many class="main.java.model.Timetable" />
+            <one-to-many class="main.java.model.Timetable"/>
         </set>
         <set name="attendances" table="attendance" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="SubjectID" length="10" not-null="true" />
+                <column name="SubjectID" length="10" not-null="true"/>
             </key>
-            <one-to-many class="main.java.model.Attendance" />
+            <one-to-many class="main.java.model.Attendance"/>
         </set>
     </class>
 </hibernate-mapping>

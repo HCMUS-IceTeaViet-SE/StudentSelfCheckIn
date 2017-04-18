@@ -3,7 +3,7 @@ USE SelfCheckInDatabase;
 
 CREATE TABLE Account(
 	UsrName varchar(10),
-    PassWrd varchar(30),
+    PassWrd varchar(50),
     IsTheFisrtTime bit,
     primary key(UsrName)
 );

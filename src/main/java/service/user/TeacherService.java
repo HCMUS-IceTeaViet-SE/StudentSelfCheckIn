@@ -1,6 +1,5 @@
 package main.java.service.user;
 
-import main.java.model.Student;
 import main.java.model.Teacher;
 import main.java.service.BaseService;
 import main.java.service.IBaseService;

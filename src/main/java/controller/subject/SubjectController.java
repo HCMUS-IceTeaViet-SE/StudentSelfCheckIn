@@ -1,6 +1,5 @@
 package main.java.controller.subject;
 
-import main.java.controller.BaseController;
 import main.java.model.*;
 import main.java.service.subject.AttendanceService;
 import main.java.service.subject.ClassSubjectService;
@@ -8,8 +7,6 @@ import main.java.service.subject.StudentSubjectService;
 import main.java.service.subject.TimeTableService;
 import main.java.utils.FileUtils;
 
-import javax.security.auth.Subject;
-import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
@@ -18,7 +15,8 @@ import java.util.*;
 /**
  * Created by Genius Doan on 4/11/2017.
  */
-public class SubjectController extends BaseController {
+public class SubjectController {
+    protected static SubjectController instance = null;
     private ClassSubjectService subjectService;
     private TimeTableService timeTableService;
     private AttendanceService attendanceService;
@@ -43,11 +41,10 @@ public class SubjectController extends BaseController {
         if (instance == null)
             instance = new SubjectController();
 
-        return (SubjectController) instance;
+        return instance;
     }
 
-    public List<ClassSubject> getSubjectList()
-    {
+    public List<ClassSubject> getSubjectList() {
         return subjectService.findAll();
     }
 
@@ -60,22 +57,20 @@ public class SubjectController extends BaseController {
     }
 
     public List<Student> getStudentList(String subjectId) {
-       List<StudentSubject> list = studentSubjectService.findAll();
-       List<Student> studentList = new ArrayList<>();
-       for (int i = 0; i < list.size(); i++)
-       {
-           if (list.get(i).getId().getSubjectId().equals(subjectId))
-               studentList.add(list.get(i).getStudent());
-       }
+        List<StudentSubject> list = studentSubjectService.findAll();
+        List<Student> studentList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId().getSubjectId().equals(subjectId))
+                studentList.add(list.get(i).getStudent());
+        }
 
-       return studentList;
+        return studentList;
     }
 
     public List<ClassSubject> getSubjectList(String studentId) {
         List<StudentSubject> list = studentSubjectService.findAll();
         List<ClassSubject> studentList = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++)
-        {
+        for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getStudent().getStudentId().equals(studentId))
                 studentList.add(list.get(i).getClasssubject());
         }
@@ -87,7 +82,7 @@ public class SubjectController extends BaseController {
         StudentSubjectId id = new StudentSubjectId(student.getStudentId(), subjectId);
         ClassSubject subject = subjectService.findOne(subjectId);
 
-        return studentSubjectService.save(new StudentSubject(id,subject,student));
+        return studentSubjectService.save(new StudentSubject(id, subject, student));
     }
 
     //TODO: Genius
@@ -97,7 +92,7 @@ public class SubjectController extends BaseController {
             addStudentToSubject(subjectId, studentList.get(i));
         }
 
-       return true;
+        return true;
     }
 
     //TODO: Genius
@@ -119,25 +114,21 @@ public class SubjectController extends BaseController {
         return false;
     }
 
-    public List<Boolean> getCheckInData(String subjectId, String studentId)
-    {
+    public List<Boolean> getCheckInData(String subjectId, String studentId) {
         List<Attendance> att = attendanceService.findAll();
         List<Boolean> res = new ArrayList<>();
         Date startDate = getSubjectStartDate(subjectId);
 
-        for (int i = 0; i < 15; i++)
-        {
+        for (int i = 0; i < 15; i++) {
             res.add(false);
         }
 
-        for (int i = 0; i < att.size(); i++)
-        {
+        for (int i = 0; i < att.size(); i++) {
             Attendance a = att.get(i);
 
-            if (a.getId().getSubjectId().equals(subjectId) && a.getId().getStudentId().equals(studentId))
-            {
+            if (a.getId().getSubjectId().equals(subjectId) && a.getId().getStudentId().equals(studentId)) {
                 long diff = a.getId().getCheckInDate().getTime() - startDate.getTime();
-                int weekDiff = (int)diff / (7*24 * 60 * 60 * 1000);
+                int weekDiff = (int) diff / (7 * 24 * 60 * 60 * 1000);
 
                 if (weekDiff < 15)
                     res.set(weekDiff, true);
@@ -147,14 +138,11 @@ public class SubjectController extends BaseController {
         return res;
     }
 
-    public Date getSubjectStartDate(String subjectId)
-    {
+    public Date getSubjectStartDate(String subjectId) {
         List<Timetable> timetableList = timeTableService.findAll();
 
-        for (int i = 0; i < timetableList.size(); i++)
-        {
-            if (timetableList.get(i).getClasssubject().getSubjectId().equals(subjectId))
-            {
+        for (int i = 0; i < timetableList.size(); i++) {
+            if (timetableList.get(i).getClasssubject().getSubjectId().equals(subjectId)) {
                 return timetableList.get(i).getStartDate();
             }
         }
@@ -162,13 +150,11 @@ public class SubjectController extends BaseController {
         return new Date();
     }
 
-    public Map<Student,List<Boolean>> getCheckInDataBySubject(String subjectId)
-    {
+    public Map<Student, List<Boolean>> getCheckInDataBySubject(String subjectId) {
         List<Student> studentList = getStudentList(subjectId);
         Map<Student, List<Boolean>> data = new HashMap<>();
 
-        for (int i = 0; i< studentList.size(); i++)
-        {
+        for (int i = 0; i < studentList.size(); i++) {
             Student s = studentList.get(i);
             data.put(s, getCheckInData(subjectId, s.getStudentId()));
         }

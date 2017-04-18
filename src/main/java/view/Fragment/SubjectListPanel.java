@@ -1,19 +1,22 @@
-package main.java.view;
+package main.java.view.Fragment;
 
 import main.java.controller.subject.SubjectController;
 import main.java.model.ClassSubject;
+import main.java.view.Dialog.ManageStudentDialog;
+import main.java.view.OnClickListener;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
-import static main.java.view.MainFrame.LINE_HEIGHT;
-import static main.java.view.MainFrame.MARGIN;
+import static main.java.view.Frame.BaseFrame.LINE_HEIGHT;
+import static main.java.view.Frame.BaseFrame.MARGIN;
 
 /**
  * Created by Genius Doan on 4/12/2017.
@@ -66,7 +69,7 @@ public class SubjectListPanel extends JPanel {
         add(btnSearch);
 
         btnAddSubject = new JButton("Thêm môn học mới");
-        btnAddSubject.setBounds(MARGIN + 160 + 140 + 80, MARGIN + LINE_HEIGHT, 160, LINE_HEIGHT);
+        btnAddSubject.setBounds(MARGIN + 160 + 140 + 120, MARGIN + LINE_HEIGHT, 160, LINE_HEIGHT);
         btnAddSubject.setForeground(Color.WHITE);
         btnAddSubject.setBackground(Color.decode("#F57C00"));
         add(btnAddSubject);
@@ -93,7 +96,7 @@ public class SubjectListPanel extends JPanel {
         };
 
         subjectTable.setBounds(MARGIN, MARGIN + 80, width - 2 * MARGIN, 240);
-        subjectTable.setPreferredScrollableViewportSize(new Dimension(450, 63));
+        subjectTable.setPreferredScrollableViewportSize(new Dimension(width - 2 * MARGIN, 63));
         subjectTable.setFillsViewportHeight(true);
 
         JScrollPane scrollPane = new JScrollPane(subjectTable);
@@ -146,8 +149,7 @@ public class SubjectListPanel extends JPanel {
         tableModel.setRowCount(0);
         List<ClassSubject> subjectList = SubjectController.getInstance().getSubjectList();
 
-        for (int i = 0; i < subjectList.size(); i++)
-        {
+        for (int i = 0; i < subjectList.size(); i++) {
             ClassSubject subject = subjectList.get(i);
             String[] row = {subject.getSubjectId(), subject.getSubjectName(), String.valueOf(SubjectController.getInstance().getStudentList(subject.getSubjectId()).size())};
             tableModel.addRow(row);

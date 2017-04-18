@@ -1,13 +1,9 @@
 package main.java;
 
 
-import main.java.model.Student;
-import main.java.service.user.StudentService;
-import main.java.view.MainFrame;
+import main.java.view.Frame.LoginFrame;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
+import javax.swing.*;
 
 
 /**
@@ -15,14 +11,8 @@ import java.util.List;
  */
 public class Application {
     public static void main(final String[] args) throws Exception {
-
-
-        StudentService s = new StudentService();
-        List<Student> as = s.findAll();
-
-        MainFrame mainFrame = new MainFrame("1412477 - Hibernate Assignment");
-        mainFrame.setVisible(true);
-
-
+        LoginFrame layout = new LoginFrame("Đăng nhập", 450, 400);
+        layout.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        layout.setVisible(true);
     }
 }

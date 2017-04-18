@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Apr 15, 2017 9:17:47 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="main.java.model.Account" table="account" catalog="selfcheckindatabase" optimistic-lock="version">
         <id name="usrName" type="string">
-            <column name="UsrName" length="10" />
-            <generator class="assigned" />
+            <column name="UsrName" length="10"/>
+            <generator class="assigned"/>
         </id>
         <property name="passWrd" type="string">
-            <column name="PassWrd" length="30" />
+            <column name="PassWrd" length="50"/>
         </property>
         <property name="isTheFisrtTime" type="java.lang.Boolean">
-            <column name="IsTheFisrtTime" />
+            <column name="IsTheFisrtTime"/>
         </property>
     </class>
 </hibernate-mapping>

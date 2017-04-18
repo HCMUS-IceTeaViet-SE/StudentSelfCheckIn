@@ -1,42 +1,42 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Apr 15, 2017 9:17:47 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="main.java.model.Student" table="student" catalog="selfcheckindatabase" optimistic-lock="version">
         <id name="studentId" type="string">
-            <column name="StudentID" length="10" />
-            <generator class="assigned" />
+            <column name="StudentID" length="10"/>
+            <generator class="assigned"/>
         </id>
         <property name="studentName" type="string">
-            <column name="StudentName" length="50" />
+            <column name="StudentName" length="50"/>
         </property>
         <property name="usrName" type="string">
-            <column name="UsrName" length="30" />
+            <column name="UsrName" length="30"/>
         </property>
         <property name="className" type="string">
-            <column name="ClassName" length="30" />
+            <column name="ClassName" length="30"/>
         </property>
         <property name="sex" type="string">
-            <column name="Sex" length="10" />
+            <column name="Sex" length="10"/>
         </property>
         <property name="dob" type="date">
-            <column name="DOB" length="10" />
+            <column name="DOB" length="10"/>
         </property>
         <property name="address" type="string">
-            <column name="Address" length="200" />
+            <column name="Address" length="200"/>
         </property>
         <set name="studentSubjects" table="student_subject" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="StudentID" length="10" not-null="true" />
+                <column name="StudentID" length="10" not-null="true"/>
             </key>
-            <one-to-many class="main.java.model.StudentSubject" />
+            <one-to-many class="main.java.model.StudentSubject"/>
         </set>
         <set name="attendances" table="attendance" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="StudentID" length="10" not-null="true" />
+                <column name="StudentID" length="10" not-null="true"/>
             </key>
-            <one-to-many class="main.java.model.Attendance" />
+            <one-to-many class="main.java.model.Attendance"/>
         </set>
     </class>
 </hibernate-mapping>

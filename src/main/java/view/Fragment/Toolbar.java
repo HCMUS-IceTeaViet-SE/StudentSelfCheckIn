@@ -1,14 +1,15 @@
-package main.java.view;
+package main.java.view.Fragment;
 
 import main.java.utils.UIUtils;
+import main.java.view.OnClickListener;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static main.java.view.MainFrame.LINE_HEIGHT;
-import static main.java.view.MainFrame.MARGIN;
+import static main.java.view.Frame.BaseFrame.LINE_HEIGHT;
+import static main.java.view.Frame.BaseFrame.MARGIN;
 
 /**
  * Created by Genius Doan on 4/12/2017.
@@ -28,12 +29,12 @@ public class Toolbar extends JPanel {
     private boolean isSignedIn = false;
 
 
-    public Toolbar(int defaultWidth, int defaultHeight) {
+    public Toolbar(int width, int height) {
         super();
-        this.defaultWidth = defaultWidth;
-        this.defaultHeight = defaultHeight;
+        this.defaultWidth = width;
+        this.defaultHeight = height;
 
-        setBounds(0, 0, defaultWidth, defaultHeight);
+        setBounds(0, 0, width, height);
         setBackground(Color.decode(MATERIAL_TOOLBAR_COLOR));
         setLayout(null);
 

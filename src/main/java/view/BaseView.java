@@ -8,5 +8,6 @@ public interface BaseView {
     int defaultHeight = 600;
 
     void initLayoutView();
+
     void initData();
 }

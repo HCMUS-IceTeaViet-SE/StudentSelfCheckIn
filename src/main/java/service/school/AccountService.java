@@ -1,7 +1,6 @@
 package main.java.service.school;
 
 import main.java.model.Account;
-import main.java.model.Account;
 import main.java.service.BaseService;
 import main.java.service.IBaseService;
 import main.java.utils.HibernateUtils;

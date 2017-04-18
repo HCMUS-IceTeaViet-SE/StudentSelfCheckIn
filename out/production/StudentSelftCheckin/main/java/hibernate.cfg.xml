@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <!--
 DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
@@ -40,22 +41,22 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-configuration>
-  <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">
-      jdbc:mysql://localhost:3306/selfcheckindatabase?autoReconnect&amp;useUnicode=true&amp;characterEncoding=UTF-8
-    </property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">12345678</property>
-    <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="main/java/model/Timetable.hbm.xml"/>
-    <mapping resource="main/java/model/StudentSubject.hbm.xml"/>
-    <mapping resource="main/java/model/Teacher.hbm.xml"/>
-    <mapping resource="main/java/model/Account.hbm.xml"/>
-    <mapping resource="main/java/model/Student.hbm.xml"/>
-    <mapping resource="main/java/model/ClassSubject.hbm.xml"/>
-    <mapping resource="main/java/model/Attendance.hbm.xml"/>
-  </session-factory>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">
+            jdbc:mysql://localhost:3306/selfcheckindatabase?autoReconnect&amp;useUnicode=true&amp;characterEncoding=UTF-8
+        </property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">12345678</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <mapping resource="main/java/model/Timetable.hbm.xml"/>
+        <mapping resource="main/java/model/StudentSubject.hbm.xml"/>
+        <mapping resource="main/java/model/Teacher.hbm.xml"/>
+        <mapping resource="main/java/model/Account.hbm.xml"/>
+        <mapping resource="main/java/model/Student.hbm.xml"/>
+        <mapping resource="main/java/model/ClassSubject.hbm.xml"/>
+        <mapping resource="main/java/model/Attendance.hbm.xml"/>
+    </session-factory>
 </hibernate-configuration>

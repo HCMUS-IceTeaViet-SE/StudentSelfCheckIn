@@ -1,6 +1,7 @@
 package main.java.service.subject;
 
-import main.java.model.*;
+import main.java.model.StudentSubject;
+import main.java.model.StudentSubjectId;
 import main.java.service.BaseService;
 import main.java.service.IBaseService;
 import main.java.utils.HibernateUtils;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * Created by Genius Doan on 4/15/2017.
  */
-public class StudentSubjectService  extends BaseService implements IBaseService<StudentSubject, StudentSubjectId> {
+public class StudentSubjectService extends BaseService implements IBaseService<StudentSubject, StudentSubjectId> {
     @Override
     public StudentSubject findOne(StudentSubjectId id) {
         StudentSubject att = null;

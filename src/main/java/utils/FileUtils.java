@@ -2,10 +2,11 @@ package main.java.utils;
 
 import main.java.model.BaseModel;
 
-import java.io.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Created by Genius Doan on 3/12/2017.
